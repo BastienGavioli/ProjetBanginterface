@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: images/bg.jpg;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="135.0" layoutY="167.0" mnemonicParsing="false" styleClass="buton" text="Lancer Une partie" />
+      <Button layoutX="389.0" layoutY="167.0" mnemonicParsing="false" text="Lancer depuis une sauvegarde" />
+      <Button layoutX="146.0" layoutY="307.0" mnemonicParsing="false" text="Lire les règles" />
+      <Button layoutX="442.0" layoutY="307.0" mnemonicParsing="false" text="Parametre" />
+      <Label layoutX="286.0" layoutY="45.0" text="Bang">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
