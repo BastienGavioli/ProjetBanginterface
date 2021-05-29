@@ -4,15 +4,20 @@ import fr.umontpellier.iut.bang.logic.Game;
 import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.ResultsView;
 import fr.umontpellier.iut.bang.views.StartView;
+import fr.umontpellier.iut.bang.views.ourviews.YourGameView;
 import fr.umontpellier.iut.bang.views.ourviews.YourStartView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,13 +37,19 @@ public class BangIHM extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Bang");
-        initStartView();
+        /*initStartView();
         startView.setPlayersListSetListener(whenPlayersNamesListIsSet);
-        initPlayersNames();
+        initPlayersNames();*/
+        startGame();
     }
 
     public void startGame() {
-        List<String> playerNames = startView.getPlayersNamesList();
+//        List<String> playerNames = startView.getPlayersNamesList();
+        List<String> playerNames = new ArrayList<>();
+        playerNames.add("John");
+        playerNames.add("Paul");
+        playerNames.add("Ringo");
+        playerNames.add("George");
         game = new IGame(new Game(Game.makePlayers(playerNames.toArray(new String[playerNames.size()]))));
         initGameView();
         initResultView();
@@ -64,7 +75,7 @@ public class BangIHM extends Application {
      * Pour instancier la vue principale du jeu
      */
     private void initGameView() {
-        gameView = null;
+        gameView = new BangIHMControl(game);
     }
 
     /**
