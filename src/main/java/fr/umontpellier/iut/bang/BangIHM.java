@@ -54,8 +54,8 @@ public class BangIHM extends Application {
         initGameView();
         initResultView();
         Scene scene = new Scene(gameView);
-        primaryStage.setHeight(1000);
-        primaryStage.setWidth(1500);
+        primaryStage.setHeight(800);
+        primaryStage.setWidth(1400);
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest(event -> {
             this.onStopGame();
@@ -105,7 +105,7 @@ public class BangIHM extends Application {
     public void onStopGame() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
-        alert.setContentText("Do you really want to stop playing ?");
+        alert.setContentText("Voulez vous vraiment arrêter de jouer ?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             Platform.exit();
