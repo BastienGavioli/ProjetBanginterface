@@ -4,11 +4,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <Button id="lancerUnePartie" layoutX="92.0" layoutY="133.0" mnemonicParsing="false" styleClass="bouton" text="Lancer une partie" />
    <Button id="lancerSauvegarde" layoutX="354.0" layoutY="133.0" mnemonicParsing="false" text="Lancer depuis une sauvegarde" />
    <Button id="lireRegles" layoutX="103.0" layoutY="254.0" mnemonicParsing="false" text="Lire les règles" />
    <Button id="parametres" layoutX="407.0" layoutY="254.0" mnemonicParsing="false" text="Paramètres" />
+   <Button id="quitter" layoutX="580.0" layoutY="375.0" mnemonicParsing="false" onAction="#quitGame" text="X" />
    <Label layoutX="260.0" layoutY="23.0" text="Bang">
       <font>
          <Font size="36.0" />
