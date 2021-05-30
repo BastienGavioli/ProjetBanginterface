@@ -25,9 +25,6 @@ public class BangIHMControl extends GameView {
     @FXML
     private Button parametres;
 
-    @FXML
-    private Button quitter;
-
     public BangIHMControl(IGame game) {
         super(game);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/myStartView.fxml"));
@@ -49,16 +46,5 @@ public class BangIHMControl extends GameView {
     @Override
     protected void setPassSelectedListener() {
 
-    }
-
-    @FXML
-    public void quitGame() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Nigerundayo, Smokey!");
-        alert.setContentText("Do you really want to stop playing ?");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            Platform.exit();
-        }
     }
 }

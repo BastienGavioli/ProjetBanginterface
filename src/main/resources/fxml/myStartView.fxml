@@ -9,7 +9,6 @@
    <Button id="lancerSauvegarde" layoutX="800.0" layoutY="200.0" mnemonicParsing="false" text="Lancer depuis une sauvegarde" />
    <Button id="lireRegles" layoutX="410.0" layoutY="400.0" mnemonicParsing="false" text="Lire les règles" />
    <Button id="parametres" layoutX="840.0" layoutY="400.0" mnemonicParsing="false" text="Paramètres" />
-   <Button id="quitter" layoutX="900.0" layoutY="600.0" mnemonicParsing="false" onAction="#quitGame" text="X" />
    <Label layoutX="600.0" layoutY="23.0" text="Bang">
       <font>
          <Font size="50.0" />
