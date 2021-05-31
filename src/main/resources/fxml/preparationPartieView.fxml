@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-image: images/bg.jpg;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
+  <fx:root id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">   <children>
       <Button layoutX="26.0" layoutY="352.0" mnemonicParsing="false" text="Retour" />
       <Button layoutX="504.0" layoutY="14.0" mnemonicParsing="false" text="Parametre" />
       <Label layoutX="260.0" layoutY="27.0" text="Bang">
@@ -21,4 +20,5 @@
          </children></Pane>
       <Button layoutX="478.0" layoutY="352.0" mnemonicParsing="false" text="Lancer la partie" />
    </children>
-</Pane>
+</fx:root>
+
