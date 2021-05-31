@@ -4,7 +4,8 @@ import fr.umontpellier.iut.bang.logic.Game;
 import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.ResultsView;
 import fr.umontpellier.iut.bang.views.StartView;
-import fr.umontpellier.iut.bang.views.ourviews.YourGameView;
+import fr.umontpellier.iut.bang.views.ourviews.BangIHMControl;
+import fr.umontpellier.iut.bang.views.ourviews.InGameView;
 import fr.umontpellier.iut.bang.views.ourviews.YourStartView;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -13,8 +14,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -23,11 +22,13 @@ import java.util.Optional;
 
 public class BangIHM extends Application {
 
-    private GameView gameView;
+    private GameView firstView;
+    private InGameView inGame; //Vue utilisée pendant le jeu
     private StartView startView;
     private ResultsView resultsView;
     private Stage primaryStage;
     private IGame game;
+    private Scene scene2;
 
     public static void main(String[] args) {
         launch(args);
@@ -40,11 +41,12 @@ public class BangIHM extends Application {
         /*initStartView();
         startView.setPlayersListSetListener(whenPlayersNamesListIsSet);
         initPlayersNames();*/
-        startGame();
+        startFirstView();
     }
 
-    public void startGame() {
+    public void startFirstView() {
 //        List<String> playerNames = startView.getPlayersNamesList();
+        scene2 = new Scene(new InGameView(game));
         List<String> playerNames = new ArrayList<>();
         playerNames.add("John");
         playerNames.add("Paul");
@@ -53,7 +55,7 @@ public class BangIHM extends Application {
         game = new IGame(new Game(Game.makePlayers(playerNames.toArray(new String[playerNames.size()]))));
         initGameView();
         initResultView();
-        Scene scene = new Scene(gameView);
+        Scene scene = new Scene(firstView);
         primaryStage.setHeight(800);
         primaryStage.setWidth(1400);
         primaryStage.setScene(scene);
@@ -62,6 +64,21 @@ public class BangIHM extends Application {
             event.consume();
         });
         primaryStage.show();
+    }
+    /**
+     * Permet de passer à la scene inGame
+     */
+    public void changeSceneToInGame(){
+
+        primaryStage.setScene(scene2);
+    }
+    /**
+     * Pour lancer la vue de la partie
+     */
+    static public void startInGame(){
+
+        //scene = new Scene(firstView);
+        //primaryStage.show();
     }
 
     /**
@@ -72,12 +89,18 @@ public class BangIHM extends Application {
     }
 
     /**
-     * Pour instancier la vue principale du jeu
+     * Pour instancier la vue d'arrivé dans le jeu
      */
     private void initGameView() {
-        gameView = new BangIHMControl(game);
+        firstView = new BangIHMControl(game, this);
     }
 
+    /**
+     * Pour instancier la vue principale du jeu
+     */
+    private void initInGameView() {
+        inGame = new InGameView(game);
+    }
     /**
      * Pour instancier la vue de fin de partie
      */
@@ -87,7 +110,7 @@ public class BangIHM extends Application {
 
     private final ListChangeListener<String> whenPlayersNamesListIsSet = change -> {
         if (!startView.getPlayersNamesList().isEmpty())
-            startGame();
+            startFirstView();
     };
 
     public IGame getIGame() {

@@ -1,17 +1,16 @@
-package fr.umontpellier.iut.bang;
+package fr.umontpellier.iut.bang.views.ourviews;
 
+import fr.umontpellier.iut.bang.BangIHM;
+import fr.umontpellier.iut.bang.IGame;
 import fr.umontpellier.iut.bang.views.GameView;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
-import java.util.Optional;
 
 public class BangIHMControl extends GameView {
+    BangIHM main; //Permet d'acceder aux fonctions du main
 
     @FXML
     private Button lancerUnePartie;
@@ -25,8 +24,9 @@ public class BangIHMControl extends GameView {
     @FXML
     private Button parametres;
 
-    public BangIHMControl(IGame game) {
+    public BangIHMControl(IGame game, BangIHM main) {
         super(game);
+        this.main = main;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/myStartView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -46,5 +46,9 @@ public class BangIHMControl extends GameView {
     @Override
     protected void setPassSelectedListener() {
 
+    }
+    @FXML
+    public void lancerPartie(){
+        main.changeSceneToInGame();
     }
 }
