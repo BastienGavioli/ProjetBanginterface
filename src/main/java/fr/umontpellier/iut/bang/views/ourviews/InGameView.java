@@ -40,14 +40,14 @@ public class InGameView extends GameView {
             throw new RuntimeException(exception);
         }
 
-        placementInitial();
+        //placementInitial();
     }
-
+/*
     public void placementInitial(){
         ICard carteTest = new ICard(new CatBalou(1, CardSuit.CLUB), 50, 50);
         testCard.setGraphic(new ImageView("src/main/resources/"+carteTest.getImageName()));
 
-    }
+    }*/
 
     @Override
     protected void bindNextActionMessage() {

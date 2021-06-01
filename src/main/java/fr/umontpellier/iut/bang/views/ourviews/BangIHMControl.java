@@ -10,10 +10,10 @@ import javafx.scene.control.Button;
 import java.io.IOException;
 
 public class BangIHMControl extends GameView {
-    private BangIHM main; //Permet d'accéder aux fonctions du main
+    BangIHM main; //Permet d'acceder aux fonctions du main
 
     @FXML
-    private Button lancerUnePartie;
+    private Button btnLancer;
 
     @FXML
     private Button lancerSauvegarde;

@@ -38,24 +38,27 @@ public class BangIHM extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Bang");
-        /*initStartView();
-        startView.setPlayersListSetListener(whenPlayersNamesListIsSet);
-        initPlayersNames();*/
         startFirstView();
     }
 
     public void startFirstView() {
-//        List<String> playerNames = startView.getPlayersNamesList();
-        scene2 = new Scene(new InGameView(game));
         List<String> playerNames = new ArrayList<>();
         playerNames.add("John");
         playerNames.add("Paul");
         playerNames.add("Ringo");
         playerNames.add("George");
+
+        //Creation de la partie
         game = new IGame(new Game(Game.makePlayers(playerNames.toArray(new String[playerNames.size()]))));
         initGameView();
+        initInGameView();
         initResultView();
+
+        //Creation des scenes
         Scene scene = new Scene(firstView);
+        scene2 = new Scene(inGame);
+
+        //Caracteristiques générales de la fenetre
         primaryStage.setHeight(800);
         primaryStage.setWidth(1400);
         primaryStage.setScene(scene);
@@ -65,6 +68,7 @@ public class BangIHM extends Application {
         });
         primaryStage.show();
     }
+
     /**
      * Permet de passer à la scene inGame
      */
