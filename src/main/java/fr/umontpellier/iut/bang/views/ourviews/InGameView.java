@@ -39,6 +39,7 @@ public class InGameView extends GameView {
     public InGameView(IGame game, BangIHM main) {
         super(game);
         this.main = main;
+        areasPlayers = new ArrayList<>();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/inGameView.fxml"));
 
