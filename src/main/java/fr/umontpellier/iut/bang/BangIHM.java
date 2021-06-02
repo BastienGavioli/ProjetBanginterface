@@ -29,6 +29,7 @@ public class BangIHM extends Application {
     private Stage primaryStage;
     private IGame game;
     private Scene scene2;
+    private Scene scene;
 
     public static void main(String[] args) {
         launch(args);
@@ -55,7 +56,7 @@ public class BangIHM extends Application {
         initResultView();
 
         //Creation des scenes
-        Scene scene = new Scene(firstView);
+        scene = new Scene(firstView);
         scene2 = new Scene(inGame);
 
         //Caracteristiques générales de la fenetre
@@ -85,6 +86,15 @@ public class BangIHM extends Application {
 
         primaryStage.setScene(scene2);
     }
+
+    /**
+     * Permet de passer à la scene inGame
+     */
+    public void changeSceneToStartView(){
+
+    primaryStage.setScene(scene);
+    }
+
     /**
      * Pour lancer la vue de la partie
      */
@@ -112,7 +122,7 @@ public class BangIHM extends Application {
      * Pour instancier la vue principale du jeu
      */
     private void initInGameView() {
-        inGame = new InGameView(game);
+        inGame = new InGameView(game, this);
     }
     /**
      * Pour instancier la vue de fin de partie

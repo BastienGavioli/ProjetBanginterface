@@ -1,5 +1,6 @@
 package fr.umontpellier.iut.bang.views.ourviews;
 
+import fr.umontpellier.iut.bang.BangIHM;
 import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IGame;
 import fr.umontpellier.iut.bang.logic.cards.Bang;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InGameView extends GameView {
+    private BangIHM main;
 
 
     @FXML
@@ -34,8 +36,9 @@ public class InGameView extends GameView {
     private Button parametresBtn;
 
 
-    public InGameView(IGame game) {
+    public InGameView(IGame game, BangIHM main) {
         super(game);
+        this.main = main;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/inGameView.fxml"));
 
@@ -81,6 +84,11 @@ public class InGameView extends GameView {
     @Override
     protected void setPassSelectedListener() {
 
+    }
+
+    @FXML
+    public void retourMenu(){
+        main.changeSceneToStartView();
     }
 
 }
