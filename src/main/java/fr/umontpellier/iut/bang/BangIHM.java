@@ -62,7 +62,7 @@ public class BangIHM extends Application {
     //Ce listener écoute les changements d'état de l'énumération de GameState
     private ChangeListener<? super GameState> whenStateChanges;
     //Ce listener écoute les changements de cartes piochés
-    private ListChangeListener<Card> whenDrawnCardschanges;
+    private ListChangeListener<Card> whenDrawnCardsChanges;
 
 
     public static void main(String[] args) {
@@ -217,7 +217,7 @@ public class BangIHM extends Application {
         };
 
         //Quand la pile de carte change
-        whenDrawnCardschanges = new ListChangeListener<Card>() {
+        whenDrawnCardsChanges = new ListChangeListener<Card>() {
             @Override
             public void onChanged(Change<? extends Card> change) {
                 System.out.println("Les cartes piochées ont changé");
@@ -228,7 +228,7 @@ public class BangIHM extends Application {
         game.canDrawPileBeSelectedProperty().addListener(whenDrawPileCanBeSelectedChanges);
         game.currentAttackProperty().addListener(whenCurrentAttackChanges);
         game.currentStateProperty().addListener(whenStateChanges);
-        game.drawnCardsProperty().addListener(whenDrawnCardschanges);
+        game.drawnCardsProperty().addListener(whenDrawnCardsChanges);
 
 
 
