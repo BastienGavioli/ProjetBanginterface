@@ -1,6 +1,7 @@
 package fr.umontpellier.iut.bang;
 
 import fr.umontpellier.iut.bang.logic.Game;
+import fr.umontpellier.iut.bang.logic.Player;
 import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.ResultsView;
 import fr.umontpellier.iut.bang.views.StartView;
@@ -9,7 +10,11 @@ import fr.umontpellier.iut.bang.views.ourviews.InGameView;
 import fr.umontpellier.iut.bang.views.ourviews.YourStartView;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.InvalidationListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.collections.WeakListChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -30,6 +35,7 @@ public class BangIHM extends Application {
     private IGame game;
     private Scene scene2;
     private Scene scene;
+    private ListChangeListener playerTarget;
 
     public static void main(String[] args) {
         launch(args);
@@ -73,7 +79,18 @@ public class BangIHM extends Application {
     }
 
     public void playGame(){
+
+
+        ChangeListener<? super Player> whenCurrentPlayerChanges = new ChangeListener<Player>() {
+            @Override
+            public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
+                System.out.println("Le target à changé");
+            }
+        };
+        game.currentPlayerProperty().addListener(whenCurrentPlayerChanges);
+
         game.run();
+
     }
 
     public void passTurn(){
@@ -84,7 +101,6 @@ public class BangIHM extends Application {
      * Permet de passer à la scene inGame
      */
     public void changeSceneToInGame(){
-
         primaryStage.setScene(scene2);
     }
 
