@@ -4,9 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <Button id="lancerUnePartie" layoutX="310.0" layoutY="250.0" mnemonicParsing="false" styleClass="bouton" text="Lancer une partie"
-            fx:id="btnLancer" onAction="#lancerPartie">
+<fx:root id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <Button id="lancerUnePartie" fx:id="btnLancer" layoutX="310.0" layoutY="250.0" mnemonicParsing="false" onAction="#lancerPartie" styleClass="bouton" text="Lancer une partie">
         <font>
             <Font size="26.0" />
         </font></Button>
