@@ -1,21 +1,15 @@
 package fr.umontpellier.iut.bang.views.ourviews;
 
 import fr.umontpellier.iut.bang.BangIHM;
-import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IGame;
 import fr.umontpellier.iut.bang.IPlayer;
 import fr.umontpellier.iut.bang.logic.Player;
-import fr.umontpellier.iut.bang.logic.cards.Bang;
-import fr.umontpellier.iut.bang.logic.cards.Card;
-import fr.umontpellier.iut.bang.logic.cards.CardSuit;
-import fr.umontpellier.iut.bang.logic.cards.CatBalou;
 import fr.umontpellier.iut.bang.views.GameView;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -24,6 +18,8 @@ import java.util.List;
 
 public class InGameView extends GameView {
     private BangIHM main;
+
+    ArrayList<YourPlayerArea> areasPlayers;
 
     private YourPlayerArea yourPlayerArea;
 
@@ -59,9 +55,14 @@ public class InGameView extends GameView {
         for(int i=0; i<game.getPlayers().size(); i++) {
             IPlayer iplayer = new IPlayer(game.getPlayers().get(i));
             yourPlayerArea = new YourPlayerArea(iplayer, this);
+            areasPlayers.add(yourPlayerArea);
         }
     }
 
+
+    public YourPlayerArea getPlayerArea(int i) {
+        return areasPlayers.get(i);
+    }
 
     @Override
     protected void bindNextActionMessage() {}
