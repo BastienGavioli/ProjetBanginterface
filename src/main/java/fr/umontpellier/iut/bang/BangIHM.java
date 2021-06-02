@@ -63,6 +63,7 @@ public class BangIHM extends Application {
         primaryStage.setHeight(700);
         primaryStage.setWidth(1100);
         primaryStage.setScene(scene);
+        primaryStage.resizableProperty().set(false);
         primaryStage.setOnCloseRequest(event -> {
             this.onStopGame();
             event.consume();
