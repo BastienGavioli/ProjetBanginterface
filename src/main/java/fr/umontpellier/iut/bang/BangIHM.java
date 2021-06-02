@@ -67,6 +67,15 @@ public class BangIHM extends Application {
             event.consume();
         });
         primaryStage.show();
+        playGame();
+    }
+
+    public void playGame(){
+        game.run();
+    }
+
+    public void passTurn(){
+        game.onPass();
     }
 
     /**

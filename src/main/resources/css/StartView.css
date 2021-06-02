@@ -1,3 +1,8 @@
 .root {
     -fx-background-image: url("../images/bg.jpg");
 }
+
+#testCard{
+    -fx-min-height: 300px;
+    -fx-min-width: 200px;
+}
