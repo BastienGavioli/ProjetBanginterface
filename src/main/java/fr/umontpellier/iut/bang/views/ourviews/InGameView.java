@@ -3,12 +3,15 @@ package fr.umontpellier.iut.bang.views.ourviews;
 import fr.umontpellier.iut.bang.BangIHM;
 import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IGame;
+import fr.umontpellier.iut.bang.IPlayer;
+import fr.umontpellier.iut.bang.logic.Player;
 import fr.umontpellier.iut.bang.logic.cards.Bang;
 import fr.umontpellier.iut.bang.logic.cards.Card;
 import fr.umontpellier.iut.bang.logic.cards.CardSuit;
 import fr.umontpellier.iut.bang.logic.cards.CatBalou;
 import fr.umontpellier.iut.bang.views.GameView;
 import javafx.animation.TranslateTransition;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -22,6 +25,7 @@ import java.util.List;
 public class InGameView extends GameView {
     private BangIHM main;
 
+    private YourPlayerArea yourPlayerArea;
 
     @FXML
     private Button testCard;
@@ -52,23 +56,20 @@ public class InGameView extends GameView {
         }
 
         //placementInitial();
-    }
-/*
-    public void placementInitial(){
-        ICard carteTest = new ICard(new Bang(1, CardSuit.CLUB), 50, 50);
-        testCard.setStyle("-fx-background-color: blue");
-        //testCard.setStyle("-fx-background-image: url(images/cards/back.png)");
-        //testCard.setStyle("-fx-background-image: url('../../../resources/"+carteTest.getImageName()+"')");
-        //testCard.setStyle("-fx-border-color: black");
-        ArrayList<Button> list = new ArrayList<Button>();
-        list.add(testCard);
-        //deplacementVersPioche(list);
+        for(int i=0; i<game.getPlayers().size(); i++) {
+            IPlayer iplayer = new IPlayer(game.getPlayers().get(i));
+            yourPlayerArea = new YourPlayerArea(iplayer, this);
+        }
     }
 
-    }*/
 
     @Override
     protected void bindNextActionMessage() {}
+
+
+    public void setCurrentPlayerChangesListener(ChangeListener<? super Player> whenCurrentPlayerChanges) {
+        super.setCurrentPlayerChangesListener(whenCurrentPlayerChanges);
+    }
 
     public void deplacementVersPioche(List<Button> cards){
         TranslateTransition transition;
