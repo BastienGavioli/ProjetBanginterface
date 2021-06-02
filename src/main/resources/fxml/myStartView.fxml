@@ -13,7 +13,7 @@
         <font>
             <Font size="25.0" />
         </font></Button>
-    <Button id="lireRegles" layoutX="210.0" layoutY="480.0" mnemonicParsing="false" text="Lire les règles">
+    <Button id="lireRegles" onAction="#lireRegles" layoutX="210.0" layoutY="480.0" mnemonicParsing="false" text="Lire les règles">
         <font>
             <Font size="25.0" />
         </font></Button>
