@@ -187,9 +187,11 @@ public class BangIHM extends Application {
             @Override
             public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
                 System.out.println("Le currentPlayer a changé");
+                t1.initTurn();
             }
         };
 
+        //Change si la pioche peut être selectionné
         whenDrawPileCanBeSelectedChanges = new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
@@ -197,13 +199,16 @@ public class BangIHM extends Application {
             }
         };
 
+        //Quand le joueur cible change
         whenCurrentAttackChanges = new ChangeListener<Card>() {
             @Override
             public void changed(ObservableValue<? extends Card> observableValue, Card aBoolean, Card t1) {
                 System.out.println("L'attaque a changé");
+
             }
         };
 
+        //Quand l'etat de l'enumeration change
         whenStateChanges = new ChangeListener<GameState>() {
             @Override
             public void changed(ObservableValue<? extends GameState> observableValue, GameState gameState, GameState t1) {
@@ -211,6 +216,7 @@ public class BangIHM extends Application {
             }
         };
 
+        //Quand la pile de carte change
         whenDrawnCardschanges = new ListChangeListener<Card>() {
             @Override
             public void onChanged(Change<? extends Card> change) {
