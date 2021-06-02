@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root id="root" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="450.0" layoutY="23.0" text="Les règles" textAlignment="CENTER">
+        <font>
+            <Font size="60.0" />
+        </font>
+    </Label>
+    <ScrollPane layoutX="100.0" layoutY="200.0">
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="10.0" text="La partie se déroule en tours de jeu, dans le sens des aiguilles d’une montre. C’est au&#10;Shérif de commencer. Le tour de chaque joueur est divisé en trois phases :&#10;1. Il tire deux cartes.&#10;2. Il joue autant de cartes qu’il le désire.&#10;3. Il se défausse des cartes en surnombre." textAlignment="CENTER">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+    </ScrollPane>
+</fx:root>

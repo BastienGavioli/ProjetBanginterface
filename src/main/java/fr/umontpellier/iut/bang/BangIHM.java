@@ -88,10 +88,12 @@ public class BangIHM extends Application {
         initGameView();
         initInGameView();
         initResultView();
+        initRulesView();
 
         //Creation des scenes
         scene = new Scene(firstView);
         scene2 = new Scene(inGame);
+        sceneRules = new Scene(readRulesView);
 
         //Caracteristiques générales de la fenetre
         primaryStage.setHeight(700);

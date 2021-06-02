@@ -14,7 +14,7 @@ public class ReadRulesView extends Pane {
 
 
     public ReadRulesView() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/myStartView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/readRules.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

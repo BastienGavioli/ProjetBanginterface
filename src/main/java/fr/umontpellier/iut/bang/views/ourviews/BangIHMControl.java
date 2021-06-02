@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 
 import java.io.IOException;
 
+
 public class BangIHMControl extends GameView {
     private BangIHM main; //Permet d'acceder aux fonctions du main
 
@@ -47,8 +48,14 @@ public class BangIHMControl extends GameView {
     protected void setPassSelectedListener() {
 
     }
+
     @FXML
-    public void lancerPartie(){
+    public void lancerPartie() {
         main.changeSceneToInGame();
+    }
+
+    @FXML
+    public void lireRegles() {
+        main.changeScenereadRulesView();
     }
 }
