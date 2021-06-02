@@ -9,6 +9,7 @@ import fr.umontpellier.iut.bang.views.ResultsView;
 import fr.umontpellier.iut.bang.views.StartView;
 import fr.umontpellier.iut.bang.views.ourviews.BangIHMControl;
 import fr.umontpellier.iut.bang.views.ourviews.InGameView;
+import fr.umontpellier.iut.bang.views.ourviews.ReadRulesView;
 import fr.umontpellier.iut.bang.views.ourviews.YourStartView;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -32,10 +33,12 @@ public class BangIHM extends Application {
     private GameView firstView;
     private InGameView inGame; //Vue utilisée pendant le jeu
     private StartView startView;
+    private ReadRulesView readRulesView;
     private ResultsView resultsView;
     private Stage primaryStage;
     private IGame game;
     private Scene scene2;
+    private Scene sceneRules;
     private Scene scene;
     private ListChangeListener playerTarget;
 
@@ -142,6 +145,13 @@ public class BangIHM extends Application {
     }
 
     /**
+     * Permet de passer à la scene readRules
+     */
+    public void changeScenereadRulesView(){
+        primaryStage.setScene(sceneRules);
+    }
+
+    /**
      * Permet de passer à la scene inGame
      */
     public void changeSceneToStartView(){
@@ -156,6 +166,13 @@ public class BangIHM extends Application {
 
         //scene = new Scene(firstView);
         //primaryStage.show();
+    }
+
+    /**
+     * Pour instancier la vue de lecture des regles
+     */
+    private void initRulesView() {
+        readRulesView = new ReadRulesView();
     }
 
     /**
