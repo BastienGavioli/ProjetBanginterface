@@ -1,5 +1,7 @@
 .root {
     -fx-background-image: url("../images/bg.jpg");
+    -fx-background-position: center;
+    -fx-background-size: cover;
 }
 
 #testCard{

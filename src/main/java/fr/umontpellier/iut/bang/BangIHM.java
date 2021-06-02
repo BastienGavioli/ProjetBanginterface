@@ -60,8 +60,8 @@ public class BangIHM extends Application {
         scene2 = new Scene(inGame);
 
         //Caracteristiques générales de la fenetre
-        primaryStage.setHeight(400);
-        primaryStage.setWidth(600);
+        primaryStage.setHeight(700);
+        primaryStage.setWidth(1100);
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest(event -> {
             this.onStopGame();
