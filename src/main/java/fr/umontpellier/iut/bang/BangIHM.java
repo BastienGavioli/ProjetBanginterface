@@ -136,7 +136,7 @@ public class BangIHM extends Application {
      */
     public void changeSceneToStartView(){
 
-    primaryStage.setScene(scene);
+        primaryStage.setScene(scene);
     }
 
     /**
