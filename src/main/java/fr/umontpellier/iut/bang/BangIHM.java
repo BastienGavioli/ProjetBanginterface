@@ -1,7 +1,9 @@
 package fr.umontpellier.iut.bang;
 
 import fr.umontpellier.iut.bang.logic.Game;
+import fr.umontpellier.iut.bang.logic.GameState;
 import fr.umontpellier.iut.bang.logic.Player;
+import fr.umontpellier.iut.bang.logic.cards.Card;
 import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.ResultsView;
 import fr.umontpellier.iut.bang.views.StartView;
@@ -80,15 +82,50 @@ public class BangIHM extends Application {
 
     public void playGame(){
 
-
+        // Ce listener écoute les changements de currentPlayer (Le joueur dont c'est le tour.)
         ChangeListener<? super Player> whenCurrentPlayerChanges = new ChangeListener<Player>() {
             @Override
             public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
-                System.out.println("Le target à changé");
+                System.out.println("Le currentPlayer a changé");
             }
         };
-        game.currentPlayerProperty().addListener(whenCurrentPlayerChanges);
 
+        //Ce listener écoute les changements de si on peut sélectionner la pioche ou non
+        ChangeListener<? super Boolean> whenDrawPileCanBeSelectedChanges = new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                System.out.println("'La pioche peut être sélectionné' a changé");
+            }
+        };
+
+        //Ce listener écoute les changements d'attaque
+        ChangeListener<? super Card> whenCurrentAttackChanges = new ChangeListener<Card>() {
+            @Override
+            public void changed(ObservableValue<? extends Card> observableValue, Card aBoolean, Card t1) {
+                System.out.println("L'attaque a changé");
+            }
+        };
+
+        //Ce listener écoute les changements d'état
+        ChangeListener<? super GameState> whenStateChanges = new ChangeListener<GameState>() {
+            @Override
+            public void changed(ObservableValue<? extends GameState> observableValue, GameState gameState, GameState t1) {
+                System.out.println("L'état a changé");
+            }
+        };
+
+        ListChangeListener<Card> whenDrawnCardschanges = new ListChangeListener<Card>() {
+            @Override
+            public void onChanged(Change<? extends Card> change) {
+                System.out.println("Les cartes piochées ont changé");
+            }
+        };
+
+        game.currentPlayerProperty().addListener(whenCurrentPlayerChanges);
+        game.canDrawPileBeSelectedProperty().addListener(whenDrawPileCanBeSelectedChanges);
+        game.currentAttackProperty().addListener(whenCurrentAttackChanges);
+        game.currentStateProperty().addListener(whenStateChanges);
+        game.drawnCardsProperty().addListener(whenDrawnCardschanges);
         game.run();
 
     }
