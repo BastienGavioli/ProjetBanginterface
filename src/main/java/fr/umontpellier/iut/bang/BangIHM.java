@@ -152,7 +152,7 @@ public class BangIHM extends Application {
      * Pour instancier la vue de lecture des regles
      */
     private void initRulesView() {
-        readRulesView = new ReadRulesView();
+        readRulesView = new ReadRulesView(this);
     }
 
     /**

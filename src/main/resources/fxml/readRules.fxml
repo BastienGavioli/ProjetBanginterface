@@ -17,4 +17,8 @@
             </font>
         </Label>
     </ScrollPane>
+    <Button id="retourAccueil" layoutX="875.0" layoutY="40.0" mnemonicParsing="false" onAction="#retourMenu" text="Retour Accueil" textAlignment="CENTER">
+        <font>
+            <Font size="20.0" />
+        </font></Button>
 </fx:root>

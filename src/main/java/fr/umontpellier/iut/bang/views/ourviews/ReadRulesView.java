@@ -11,9 +11,14 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 
 public class ReadRulesView extends Pane {
+    private BangIHM main;
+
+    @FXML
+    private Button retourMenuBtn;
 
 
-    public ReadRulesView() {
+    public ReadRulesView(BangIHM main) {
+        this.main = main;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/readRules.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -24,4 +29,10 @@ public class ReadRulesView extends Pane {
             throw new RuntimeException(exception);
         }
     }
+
+    @FXML
+    public void retourMenu(){
+        main.changeSceneToStartView();
+    }
+
 }
