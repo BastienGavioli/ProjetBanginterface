@@ -74,7 +74,7 @@ public class InGameView extends GameView {
             Label name = new Label("abc");
             rootPlayer.setAlignment(Pos.CENTER);
             ImageView img = new ImageView("/src/main/resources/images/characters/bartcassidy.png");
-            img.setFitHeight(220);
+            img.setFitHeight(200);
             img.setFitWidth(150);
             rootPlayer.getChildren().add(name);
             rootPlayer.getChildren().add(img);
@@ -85,7 +85,7 @@ public class InGameView extends GameView {
             YourPlayerArea yourPlayerArea = new YourPlayerArea(iplayer, this, playersBtn.get(i));
             areasPlayers.add(yourPlayerArea);
 
-            deplacementVersCoord(rootPlayer, ((i/2)+1)*200, ((i)%2+1)*200-(((i)%2)*50));
+            deplacementVersCoord(rootPlayer, ((i/2)+1)*200, ((i)%2+1)*200-((1-(i)%2)*80));
         }
 
 
