@@ -12,10 +12,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderImage;
 import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.VBox;
 
 public class YourPlayerArea extends PlayerArea {
 
-    Button playerBtn;
+    VBox playerBtn;
 
 
 
@@ -23,7 +24,7 @@ public class YourPlayerArea extends PlayerArea {
         super(player, gameView);
     }
 
-    public YourPlayerArea(IPlayer player, GameView gameView, Button playerBtn) {
+    public YourPlayerArea(IPlayer player, GameView gameView, VBox playerBtn) {
         this(player, gameView);
         this.playerBtn = playerBtn;
     }

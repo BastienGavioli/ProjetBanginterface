@@ -9,7 +9,14 @@ import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -35,7 +42,7 @@ public class InGameView extends GameView {
     private Button parametresBtn;
 
 
-    private ArrayList<Button> playersBtn;
+    private ArrayList<VBox> playersBtn;
 
 
     public InGameView(IGame game, BangIHM main) {
@@ -62,22 +69,40 @@ public class InGameView extends GameView {
 
         //placementInitial();
         for(int i=0; i<game.getPlayers().size(); i++) {
-            Button btn = new Button("Player "+i);
-            this.getChildren().add(btn);
-            playersBtn.add(btn);
+            VBox rootPlayer = new VBox();
+            rootPlayer.setId("rootPlayer");
+            Label name = new Label("abc");
+            rootPlayer.setAlignment(Pos.CENTER);
+            ImageView img = new ImageView("/src/main/resources/images/characters/bartcassidy.png");
+            img.setFitHeight(220);
+            img.setFitWidth(150);
+            rootPlayer.getChildren().add(name);
+            rootPlayer.getChildren().add(img);
+            this.getChildren().add(rootPlayer);
+            playersBtn.add(rootPlayer);
 
             IPlayer iplayer = new IPlayer(game.getPlayers().get(i));
             YourPlayerArea yourPlayerArea = new YourPlayerArea(iplayer, this, playersBtn.get(i));
             areasPlayers.add(yourPlayerArea);
-            btn.setOnAction(actionEvent -> yourPlayerArea.highlightCurrentArea());
+
+            deplacementVersCoord(rootPlayer, ((i/2)+1)*200, ((i)%2+1)*200-(((i)%2)*50));
         }
 
-        deplacementVersPioche(playersBtn);
+
 
 
     }
 
+    public void deplacementVersCoord(Node vBox, int x, int y){
+        TranslateTransition transition;
 
+        Duration duration = Duration.millis(1500);
+        transition = new TranslateTransition(duration, vBox);
+        transition.setByX(x);
+        transition.setByY(y);
+        transition.play();
+
+    }
 
     public YourPlayerArea getPlayerArea(int i) {
         return areasPlayers.get(i);
@@ -93,17 +118,6 @@ public class InGameView extends GameView {
 
     public void setCurrentPlayerChangesListener(ChangeListener<? super Player> whenCurrentPlayerChanges) {
         super.setCurrentPlayerChangesListener(whenCurrentPlayerChanges);
-    }
-
-    public void deplacementVersPioche(List<Button> cards){
-        TranslateTransition transition;
-        for(Button card : cards){
-            Duration duration = Duration.millis(1500);
-            transition = new TranslateTransition(duration, card);
-            transition.setByX(150);
-            transition.setByY(150);
-            transition.play();
-        }
     }
 
     @Override

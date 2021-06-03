@@ -18,3 +18,8 @@
     -fx-background-image: url("../images/parametre.png");
     -fx-background-size: 100%;
 }
+
+#rootPlayer {
+    -fx-background-color: #ff8c00;
+    -fx-padding: 10 0 0 0;
+}

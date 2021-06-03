@@ -37,7 +37,8 @@ public class BangIHM extends Application {
      * Attributs View
      */
     private GameView firstView;
-    private InGameView inGame; //Vue utilisée pendant le jeu
+    private InGameView inGame; //Vue utilisée pendan
+    // t le jeu
     private StartView startView;
     private ReadRulesView readRulesView;
     private ResultsView resultsView;
