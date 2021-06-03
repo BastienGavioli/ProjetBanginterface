@@ -19,9 +19,8 @@ import java.util.List;
 public class InGameView extends GameView {
     private BangIHM main;
 
-    ArrayList<YourPlayerArea> areasPlayers;
+    private ArrayList<YourPlayerArea> areasPlayers;
 
-    private YourPlayerArea yourPlayerArea;
 
     @FXML
     private Button testCard;
@@ -36,15 +35,24 @@ public class InGameView extends GameView {
     private Button parametresBtn;
 
 
+    private ArrayList<Button> playersBtn;
+
+
     public InGameView(IGame game, BangIHM main) {
         super(game);
         this.main = main;
         areasPlayers = new ArrayList<>();
+        playersBtn = new ArrayList<>();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/inGameView.fxml"));
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+
+
+
+
+
 
         try {
             fxmlLoader.load();
@@ -54,11 +62,21 @@ public class InGameView extends GameView {
 
         //placementInitial();
         for(int i=0; i<game.getPlayers().size(); i++) {
+            Button btn = new Button("Player "+i);
+            this.getChildren().add(btn);
+            playersBtn.add(btn);
+
             IPlayer iplayer = new IPlayer(game.getPlayers().get(i));
-            yourPlayerArea = new YourPlayerArea(iplayer, this);
+            YourPlayerArea yourPlayerArea = new YourPlayerArea(iplayer, this, playersBtn.get(i));
             areasPlayers.add(yourPlayerArea);
+            btn.setOnAction(actionEvent -> yourPlayerArea.highlightCurrentArea());
         }
+
+        deplacementVersPioche(playersBtn);
+
+
     }
+
 
 
     public YourPlayerArea getPlayerArea(int i) {
@@ -67,6 +85,10 @@ public class InGameView extends GameView {
 
     @Override
     protected void bindNextActionMessage() {}
+
+    public void hightlightPlayer(Player p){
+        System.out.println("Joueur attaqué mis en valeur");
+    }
 
 
     public void setCurrentPlayerChangesListener(ChangeListener<? super Player> whenCurrentPlayerChanges) {
@@ -79,7 +101,7 @@ public class InGameView extends GameView {
             Duration duration = Duration.millis(1500);
             transition = new TranslateTransition(duration, card);
             transition.setByX(150);
-            transition.setByY(-150);
+            transition.setByY(150);
             transition.play();
         }
     }

@@ -8,13 +8,24 @@ import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.PlayerArea;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderImage;
+import javafx.scene.layout.BorderStroke;
 
 public class YourPlayerArea extends PlayerArea {
+
+    Button playerBtn;
 
 
 
     public YourPlayerArea(IPlayer player, GameView gameView) {
         super(player, gameView);
+    }
+
+    public YourPlayerArea(IPlayer player, GameView gameView, Button playerBtn) {
+        this(player, gameView);
+        this.playerBtn = playerBtn;
     }
 
     @Override
@@ -39,11 +50,11 @@ public class YourPlayerArea extends PlayerArea {
 
     @Override
     public void highlightCurrentArea() {
-
+        playerBtn.setStyle("-fx-border-color: red");
     }
 
     @Override
     public void deHightlightCurrentArea() {
-
+        playerBtn.setStyle("-fx-border: none");
     }
 }
