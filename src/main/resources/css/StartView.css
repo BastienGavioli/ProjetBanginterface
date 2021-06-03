@@ -19,7 +19,11 @@
     -fx-background-size: 100%;
 }
 
-#rootPlayer {
-    -fx-background-color: #ff8c00;
-    -fx-padding: 10 0 0 0;
+#cache{
+    -fx-border-color: red;
+    -fx-content-display: none;
+}
+
+#rootPlayer Label{
+    -fx-translate-y: -186px;
 }
