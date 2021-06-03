@@ -46,9 +46,4 @@ public class ICard {
         return card;
     }
 
-    public Button createBtn(){
-        Button btn = new Button();
-        btn.setStyle("-fx-background-image: "+getImageName());
-        return btn;
-    }
 }
