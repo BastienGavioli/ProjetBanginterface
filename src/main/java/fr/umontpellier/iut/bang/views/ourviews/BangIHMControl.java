@@ -6,8 +6,11 @@ import fr.umontpellier.iut.bang.views.GameView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.IOException;
+import java.net.URL;
 
 
 public class BangIHMControl extends GameView {
@@ -57,5 +60,10 @@ public class BangIHMControl extends GameView {
     @FXML
     public void lireRegles() {
         main.changeScenereadRulesView();
+        URL url = getClass().getClassLoader().getResource("sounds/Paper.mp3");
+        Media media = new Media(url.toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        mediaPlayer.play();
     }
 }

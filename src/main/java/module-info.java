@@ -3,8 +3,7 @@ open module ihm.bang {
     requires javafx.controls;
     requires javafx.graphics;
     requires javafx.fxml;
-
-    exports fr.umontpellier.iut.bang.logic.characters;
+    requires javafx.media;
     exports fr.umontpellier.iut.bang.views;
 //    exports fr.umontpellier.iut.bang.views.ourviews;
     exports fr.umontpellier.iut.bang.logic.cards;
