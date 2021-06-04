@@ -8,7 +8,10 @@ import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.PlayerArea;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderImage;
 import javafx.scene.layout.BorderStroke;
@@ -16,18 +19,23 @@ import javafx.scene.layout.VBox;
 
 public class YourPlayerArea extends PlayerArea {
 
-    VBox playerBtn;
 
 
 
     public YourPlayerArea(IPlayer player, GameView gameView) {
         super(player, gameView);
+        VBox rootPlayer = new VBox();
+        rootPlayer.setId("rootPlayer");
+        Label name = new Label(player.getName());
+        rootPlayer.setAlignment(Pos.CENTER);
+        ImageView img = new ImageView("/src/main/resources/images/characters/bartcassidy.png");
+        img.setFitHeight(200);
+        img.setFitWidth(150);
+        rootPlayer.getChildren().add(img);
+        rootPlayer.getChildren().add(name);
+        getChildren().add(rootPlayer);
     }
 
-    public YourPlayerArea(IPlayer player, GameView gameView, VBox playerBtn) {
-        this(player, gameView);
-        this.playerBtn = playerBtn;
-    }
 
     @Override
     protected void setHandListener(ListChangeListener<Card> whenHandIsUpdated) {
@@ -51,12 +59,12 @@ public class YourPlayerArea extends PlayerArea {
 
     @Override
     public void highlightCurrentArea() {
-        playerBtn.setStyle("-fx-border-color: red");
+        setStyle("-fx-border-color: red");
     }
 
     @Override
     public void deHightlightCurrentArea() {
-        playerBtn.setStyle("-fx-border: none");
+        setStyle("-fx-border: none");
     }
 
 

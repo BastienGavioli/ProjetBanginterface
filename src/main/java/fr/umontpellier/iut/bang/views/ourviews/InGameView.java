@@ -49,14 +49,9 @@ public class InGameView extends GameView {
 
     private ArrayList<VBox> playersBtn;
 
-
     public InGameView(IGame game, BangIHM main) {
         super(game);
         this.main = main;
-        areasPlayers = new ArrayList<>();
-        playersBtn = new ArrayList<>();
-        playersHands = new ArrayList<>();
-        handView = new Hand(this);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/inGameView.fxml"));
 
@@ -76,30 +71,14 @@ public class InGameView extends GameView {
 
         //placementInitial();
         for(int i=0; i<game.getPlayers().size(); i++) {
-            VBox rootPlayer = new VBox();
-            rootPlayer.setId("rootPlayer");
-            Label name = new Label("abc");
-            rootPlayer.setAlignment(Pos.CENTER);
-            ImageView img = new ImageView("/src/main/resources/images/characters/bartcassidy.png");
-            img.setFitHeight(200);
-            img.setFitWidth(150);
-            rootPlayer.getChildren().add(name);
-            rootPlayer.getChildren().add(img);
-            this.getChildren().add(rootPlayer);
-            playersBtn.add(rootPlayer);
 
             IPlayer iplayer = new IPlayer(game.getPlayers().get(i));
-            YourPlayerArea yourPlayerArea = new YourPlayerArea(iplayer, this, playersBtn.get(i));
-            areasPlayers.add(yourPlayerArea);
-            YourHand yourHand = new YourHand(yourPlayerArea);
-            playersHands.add(yourHand);
 
-            deplacementVersCoord(rootPlayer, ((i/2)+1)*200, ((i)%2+1)*200-((1-(i)%2)*80));
+            YourPlayerArea yourPlayerArea = new YourPlayerArea(iplayer, this);
+            getChildren().add(yourPlayerArea);
+
+            deplacementVersCoord(yourPlayerArea, ((i/2)+1)*200-((1-i/2)*150), ((i)%2+1)*200-((1-(i)%2)*80));
         }
-
-
-
-
     }
 
     public void deplacementVersCoord(Node vBox, int x, int y){
