@@ -7,6 +7,7 @@ import fr.umontpellier.iut.bang.logic.Player;
 import fr.umontpellier.iut.bang.views.GameView;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -27,6 +28,10 @@ public class InGameView extends GameView {
     private BangIHM main;
 
     private ArrayList<YourPlayerArea> areasPlayers;
+
+    private ArrayList<YourHand> playersHands;
+
+    private Hand handView;
 
 
     @FXML
@@ -50,6 +55,8 @@ public class InGameView extends GameView {
         this.main = main;
         areasPlayers = new ArrayList<>();
         playersBtn = new ArrayList<>();
+        playersHands = new ArrayList<>();
+        handView = new Hand(this);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/inGameView.fxml"));
 
@@ -84,6 +91,8 @@ public class InGameView extends GameView {
             IPlayer iplayer = new IPlayer(game.getPlayers().get(i));
             YourPlayerArea yourPlayerArea = new YourPlayerArea(iplayer, this, playersBtn.get(i));
             areasPlayers.add(yourPlayerArea);
+            YourHand yourHand = new YourHand(yourPlayerArea);
+            playersHands.add(yourHand);
 
             deplacementVersCoord(rootPlayer, ((i/2)+1)*200, ((i)%2+1)*200-((1-(i)%2)*80));
         }
@@ -130,4 +139,34 @@ public class InGameView extends GameView {
         main.changeSceneToStartView();
     }
 
+    ChangeListener<? super Player> whenCurrentPlayerChanges = new ChangeListener<Player>() {
+        @Override
+        public void changed(ObservableValue<? extends Player> observableValue, Player oldPlayer, Player newPlayer) {
+            if(oldPlayer != null){
+                findPlayerArea(oldPlayer).deHightlightCurrentArea();
+            }
+            findPlayerArea(newPlayer).highlightCurrentArea();
+            handView.emptyHand();
+            handView.setName(newPlayer.getName());
+            handView.renewHand(findPlayerHand(newPlayer));
+        }
+    };
+
+    private YourPlayerArea findPlayerArea(Player player){
+        for (YourPlayerArea pa : areasPlayers){
+            if(pa.getPlayer().equals(player)){
+                return pa;
+            }
+        }
+        return null;
+    }
+
+    private YourHand findPlayerHand(Player player){
+        for(YourHand h : playersHands){
+            if(h.getOwner().equals(player)){
+                return h;
+            }
+        }
+        return null;
+    }
 }

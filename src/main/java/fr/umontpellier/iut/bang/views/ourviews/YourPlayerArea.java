@@ -58,4 +58,6 @@ public class YourPlayerArea extends PlayerArea {
     public void deHightlightCurrentArea() {
         playerBtn.setStyle("-fx-border: none");
     }
+
+
 }

@@ -2,18 +2,22 @@ package fr.umontpellier.iut.bang.views.ourviews;
 
 import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IPlayer;
+import fr.umontpellier.iut.bang.logic.Player;
 import fr.umontpellier.iut.bang.logic.cards.Card;
 import fr.umontpellier.iut.bang.views.CardView;
+import fr.umontpellier.iut.bang.views.PlayerArea;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
 public class YourHand extends Node {
-    private IPlayer owner;
+    private PlayerArea playerArea;
+    private Player owner;
     private HBox vueMain;
 
-    public YourHand(IPlayer player){
-        owner = player;
+    public YourHand(PlayerArea playerArea){
+        this.playerArea = playerArea;
+        owner = this.playerArea.getIPlayer().getPlayer();
         vueMain = new HBox();
     }
 
@@ -23,7 +27,7 @@ public class YourHand extends Node {
             while(change.next()){
                 if(change.wasAdded()){
                     for (Card c : change.getAddedSubList()){
-                        //vueMain.getChildren().add(new CardView(new ICard(c), owner.getPlayerArea()));
+                        vueMain.getChildren().add(new CardViewEssai(new ICard(c), playerArea));
                     }
                 }
                 else if(change.wasRemoved()){
@@ -45,4 +49,11 @@ public class YourHand extends Node {
         return null;
     }
 
+    public Player getOwner() {
+        return owner;
+    }
+
+    public HBox getVueMain() {
+        return vueMain;
+    }
 }
