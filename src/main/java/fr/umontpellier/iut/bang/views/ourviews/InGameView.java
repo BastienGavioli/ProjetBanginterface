@@ -52,6 +52,7 @@ public class InGameView extends GameView {
     public InGameView(IGame game, BangIHM main) {
         super(game);
         this.main = main;
+        playersHands = new ArrayList<>();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/inGameView.fxml"));
 
@@ -78,6 +79,9 @@ public class InGameView extends GameView {
             getChildren().add(yourPlayerArea);
 
             deplacementVersCoord(yourPlayerArea, ((i/2)+1)*200-((1-i/2)*150), ((i)%2+1)*200-((1-(i)%2)*80));
+
+            YourHand yourHand = new YourHand(yourPlayerArea);
+            playersHands.add(yourHand);
         }
     }
 

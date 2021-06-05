@@ -11,26 +11,27 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 public class CardViewEssai extends CardView {
     private Boolean isVisible = false;
-    private Image frontImage;
+    private ImageView frontImage;
     private IPlayer player;
     private Label cardName;
+    private HBox affichage;
 
     public CardViewEssai(ICard card, PlayerArea playerArea){
         super(card, playerArea);
-        //Label nomCarte = new Label(card.getName());
-        frontImage = new Image(card.getImageName());
+        frontImage = new ImageView(new Image(card.getImageName()));
         player = playerArea.getIPlayer();
-
         cardName = new Label(getICard().getName());
-
+        affichage = new HBox();
         setCardSelectionListener();
-
-        getChildren().add(cardName);
+        affichage.getChildren().add(cardName);
+        affichage.getChildren().add(frontImage);
 
     }
 

@@ -6,6 +6,9 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+//cette classe est la vue de la main du jouer courrant : elle affiche la main du joueur en train de jouer
+//et s'actualise quand le joueur courrant change, montrant la main du nouveau joueur courrant
+
 public class Hand extends Node {
     private GameView game;
     private VBox container;

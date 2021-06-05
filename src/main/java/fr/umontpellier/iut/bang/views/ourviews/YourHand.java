@@ -10,6 +10,10 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
+
+// cette classe représente la vue de la main d'un joueur, elle est utilisée par la classe Hand afin
+// de pouvoir montrer la main du joueur courrant
+
 public class YourHand extends Node {
     private PlayerArea playerArea;
     private Player owner;
@@ -19,6 +23,7 @@ public class YourHand extends Node {
         this.playerArea = playerArea;
         owner = this.playerArea.getIPlayer().getPlayer();
         vueMain = new HBox();
+        setHandListener(whenHandIsUpdated);
     }
 
     private ListChangeListener<Card> whenHandIsUpdated = new ListChangeListener<Card>() {
@@ -55,5 +60,9 @@ public class YourHand extends Node {
 
     public HBox getVueMain() {
         return vueMain;
+    }
+
+    protected void setHandListener(ListChangeListener<Card> whenHandIsUpdated) {
+        owner.handProperty().addListener(whenHandIsUpdated);
     }
 }
