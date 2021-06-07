@@ -32,7 +32,7 @@ public class CardViewEssai extends CardView {
         setCardSelectionListener();
         affichage.getChildren().add(cardName);
         affichage.getChildren().add(frontImage);
-        getChildren().add(affichage);
+        //getChildren().add(affichage);
 
     }
 
