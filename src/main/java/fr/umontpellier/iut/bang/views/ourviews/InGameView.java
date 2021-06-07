@@ -34,6 +34,7 @@ public class InGameView extends GameView {
     private Hand handView;
 
 
+
     @FXML
     private Button testCard;
 
@@ -80,9 +81,12 @@ public class InGameView extends GameView {
 
             deplacementVersCoord(yourPlayerArea, ((i/2)+1)*200-((1-i/2)*150), ((i)%2+1)*200-((1-(i)%2)*80));
 
-            YourHand yourHand = new YourHand(yourPlayerArea);
+            //A réactiver afin d'afficher les cartes en main (attention, il y en a plus que prévu)
+            /*YourHand yourHand = new YourHand(yourPlayerArea);
             playersHands.add(yourHand);
+            getChildren().add(yourHand);*/
         }
+
     }
 
     public void deplacementVersCoord(Node vBox, int x, int y){
