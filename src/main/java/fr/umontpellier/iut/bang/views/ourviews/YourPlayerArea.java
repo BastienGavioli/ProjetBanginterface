@@ -14,6 +14,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
@@ -24,6 +25,9 @@ public class YourPlayerArea extends PlayerArea {
     Label name;
     ImageView img;
     HBox handView;
+    private HBox inPlay;
+
+
 
     private ListChangeListener<Card> whenHandIsUpdate = new ListChangeListener<Card>() {
         @Override
@@ -48,24 +52,28 @@ public class YourPlayerArea extends PlayerArea {
         rootPlayer.setId("rootPlayer");
         name = new Label(player.getName());
         rootPlayer.setAlignment(Pos.CENTER);
-        img = new ImageView("/src/main/resources/images/characters/bartcassidy.png");
+        img = new ImageView(getImageName());
         img.setFitHeight(200);
         img.setFitWidth(150);
         handView = new HBox();
-
+        inPlay = new HBox();
+        inPlay.setMaxWidth(300);
 
         setHandListener(whenHandIsUpdate);
-
+        setInPlayListener(whenInPlayIsUpdated);
 
         rootPlayer.getChildren().add(img);
         rootPlayer.getChildren().add(name);
         //rootPlayer.getChildren().add(handView);
+        rootPlayer.getChildren().add(inPlay);
         getChildren().add(rootPlayer);
 
 
     }
 
-
+    private String getImageName(){
+        return("images/characters/" + super.getIPlayer().getBangCharacter().getName().toLowerCase().replaceAll("\\s+","")+".png" );
+    }
 
 
 
@@ -108,5 +116,22 @@ public class YourPlayerArea extends PlayerArea {
         }
         return null;
     }
+
+    private ListChangeListener<BlueCard> whenInPlayIsUpdated = new ListChangeListener<BlueCard>() {
+        @Override
+        public void onChanged(Change<? extends BlueCard> change) {
+            while (change.next()){
+                if(change.wasAdded()){
+                    for(Card c: change.getAddedSubList())
+                        inPlay.getChildren().add(new CardViewEssai
+                                (new ICard(c),  YourPlayerArea.this));
+                }
+                else if(change.wasRemoved()){
+                    for(Card c: change.getRemoved())
+                        inPlay.getChildren().remove(findCardView(handView, c));
+                }
+            }
+        }
+    };
 
 }
