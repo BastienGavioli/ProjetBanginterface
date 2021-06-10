@@ -18,11 +18,12 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class CardViewEssai extends CardView {
-    private Boolean isVisible = false;
+    private Boolean isVisible = true;
     private ImageView frontImage;
     private IPlayer player;
     private Label cardName;
     private VBox affichage;
+    private static ImageView backImage = new ImageView(getBack());
 
     public CardViewEssai(ICard card, PlayerArea playerArea){
         super(card, playerArea);
@@ -51,6 +52,8 @@ public class CardViewEssai extends CardView {
     public void setVisible() {
         if(!isVisible){
             isVisible = true;
+            affichage.getChildren().remove(backImage);
+            affichage.getChildren().add(frontImage);
         }
     }
 
@@ -58,6 +61,8 @@ public class CardViewEssai extends CardView {
     public void setUnVisible() {
         if(isVisible){
             isVisible = false;
+            affichage.getChildren().remove(frontImage);
+            affichage.getChildren().add(backImage);
             }
         }
 

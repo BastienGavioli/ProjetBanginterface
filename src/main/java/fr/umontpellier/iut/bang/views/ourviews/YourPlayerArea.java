@@ -4,11 +4,13 @@ import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IPlayer;
 import fr.umontpellier.iut.bang.logic.cards.BlueCard;
 import fr.umontpellier.iut.bang.logic.cards.Card;
+import fr.umontpellier.iut.bang.logic.cards.Colt;
 import fr.umontpellier.iut.bang.logic.cards.WeaponCard;
 import fr.umontpellier.iut.bang.views.CardView;
 import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.PlayerArea;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -26,6 +28,7 @@ public class YourPlayerArea extends PlayerArea {
     ImageView img;
     HBox handView;
     private HBox inPlay;
+    private CardViewEssai weapon;
 
 
 
@@ -56,17 +59,28 @@ public class YourPlayerArea extends PlayerArea {
         img.setFitHeight(200);
         img.setFitWidth(150);
         handView = new HBox();
+
+        weapon = new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this);
+        weapon.setTranslateX(160);
+        weapon.setTranslateY(-280);
+
         inPlay = new HBox();
         inPlay.setMaxWidth(300);
+        inPlay.setTranslateX(160);
+        inPlay.setTranslateY(-155);
 
         setHandListener(whenHandIsUpdate);
         setInPlayListener(whenInPlayIsUpdated);
+        setWeaponListener(whenWeaponChanges);
 
         rootPlayer.getChildren().add(img);
         rootPlayer.getChildren().add(name);
         //rootPlayer.getChildren().add(handView);
         rootPlayer.getChildren().add(inPlay);
+        rootPlayer.getChildren().add(weapon);
         getChildren().add(rootPlayer);
+
+
 
 
     }
@@ -122,16 +136,50 @@ public class YourPlayerArea extends PlayerArea {
         public void onChanged(Change<? extends BlueCard> change) {
             while (change.next()){
                 if(change.wasAdded()){
-                    for(Card c: change.getAddedSubList())
-                        inPlay.getChildren().add(new CardViewEssai
-                                (new ICard(c),  YourPlayerArea.this));
+                    for(Card c: change.getAddedSubList()) {
+                        if(!(c instanceof WeaponCard)){
+                            inPlay.getChildren().add(new CardViewEssai
+                                    (new ICard(c), YourPlayerArea.this));
+                        }
+                    }
                 }
                 else if(change.wasRemoved()){
-                    for(Card c: change.getRemoved())
-                        inPlay.getChildren().remove(findCardView(handView, c));
+                    for(Card c: change.getRemoved()) {
+                        if(!(c instanceof WeaponCard)){
+                            inPlay.getChildren().remove(findCardView(handView, c));
+                        }
+                    }
                 }
             }
         }
     };
+
+    private ChangeListener<? super WeaponCard> whenWeaponChanges = new ChangeListener<WeaponCard>() {
+        @Override
+        public void changed(ObservableValue<? extends WeaponCard> observableValue, WeaponCard oldWeapon, WeaponCard newWeapon) {
+            rootPlayer.getChildren().remove(weapon);
+            if(newWeapon == null){
+                weapon = new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this);
+            }
+            else{
+                weapon =new CardViewEssai(new ICard(newWeapon),YourPlayerArea.this);
+            }
+            weapon.setTranslateX(160);
+            weapon.setTranslateY(-280);
+            rootPlayer.getChildren().add(weapon);
+        }
+    };
+
+
+
+    /*private CardViewEssai findWeaponCardView(WeaponCard weaponCard){
+        for (Node c : inPlay.getChildren()){
+            CardViewEssai weapon = (CardViewEssai) c;
+            if(weapon.getCard().equals(weaponCard)){
+                return weapon;
+            }
+        }
+        return null;
+    }*/
 
 }
