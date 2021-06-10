@@ -11,17 +11,11 @@ import javafx.scene.layout.VBox;
 //et s'actualise quand le joueur courrant change, montrant la main du nouveau joueur courrant
 
 public class Hand extends VBox {
-    private GameView game;
     private Label name;
 
-    public Hand(GameView gameView){
-        game = gameView;
-
-        gameView.getChildren().add(this);
-    }
-
-    public VBox getContainer() {
-        return this;
+    public Hand( ){
+        name = new Label();
+        getChildren().add(name);
     }
 
     public void setName(String name) {

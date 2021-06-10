@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class CardViewEssai extends CardView {
@@ -21,18 +22,27 @@ public class CardViewEssai extends CardView {
     private ImageView frontImage;
     private IPlayer player;
     private Label cardName;
-    private HBox affichage;
+    private VBox affichage;
 
     public CardViewEssai(ICard card, PlayerArea playerArea){
         super(card, playerArea);
+        setCardSelectionListener();
+
+
         frontImage = new ImageView(new Image(card.getImageName()));
+        frontImage.setFitHeight(120);
+        frontImage.setFitWidth(85);
+
         player = playerArea.getIPlayer();
         cardName = new Label(getICard().getName());
-        affichage = new HBox();
-        setCardSelectionListener();
+        affichage = new VBox();
+
+
         affichage.getChildren().add(cardName);
         affichage.getChildren().add(frontImage);
-        //getChildren().add(affichage);
+
+
+        getChildren().add(affichage);
 
     }
 

@@ -22,6 +22,7 @@ public class YourHand extends HBox {
         this.playerArea = playerArea;
         owner = this.playerArea.getIPlayer().getPlayer();
         setHandListener(whenHandIsUpdated);
+        setMaxWidth(300);
     }
 
     private ListChangeListener<Card> whenHandIsUpdated = new ListChangeListener<Card>() {
