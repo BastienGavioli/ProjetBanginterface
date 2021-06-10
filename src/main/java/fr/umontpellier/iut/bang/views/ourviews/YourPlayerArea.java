@@ -59,7 +59,7 @@ public class YourPlayerArea extends PlayerArea {
 
         rootPlayer.getChildren().add(img);
         rootPlayer.getChildren().add(name);
-        rootPlayer.getChildren().add(handView);
+        //rootPlayer.getChildren().add(handView);
         getChildren().add(rootPlayer);
 
 

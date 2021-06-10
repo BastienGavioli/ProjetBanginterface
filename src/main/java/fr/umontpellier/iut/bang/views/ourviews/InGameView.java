@@ -52,7 +52,10 @@ public class InGameView extends GameView {
 
     public InGameView(IGame game, BangIHM main) {
         super(game);
+        game.run();
         this.main = main;
+
+        areasPlayers = new ArrayList<>();
         playersHands = new ArrayList<>();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/inGameView.fxml"));
@@ -61,9 +64,9 @@ public class InGameView extends GameView {
         fxmlLoader.setController(this);
 
 
+        handView = new Hand();
 
-
-
+        getChildren().add(handView);
 
         try {
             fxmlLoader.load();
@@ -81,11 +84,17 @@ public class InGameView extends GameView {
 
             deplacementVersCoord(yourPlayerArea, ((i/2)+1)*200-((1-i/2)*150), ((i)%2+1)*200-((1-(i)%2)*80));
 
+            areasPlayers.add(yourPlayerArea);
+            playersHands.add(new YourHand(yourPlayerArea));
+            deplacementVersCoord(playersHands.get(i), 700, 400);
+
             //A réactiver afin d'afficher les cartes en main (attention, il y en a plus que prévu)
             /*YourHand yourHand = new YourHand(yourPlayerArea);
             playersHands.add(yourHand);
             getChildren().add(yourHand);*/
         }
+
+        getChildren().add(findPlayerHand(game.getCurrentPlayer()));
 
     }
 
@@ -134,8 +143,8 @@ public class InGameView extends GameView {
             }
             findPlayerArea(newPlayer).highlightCurrentArea();
             handView.emptyHand();
-            handView.setName(newPlayer.getName());
-            handView.renewHand(findPlayerHand(newPlayer));
+            //handView.setName(newPlayer.getName());
+            //handView.renewHand(findPlayerHand(newPlayer));
         }
     };
 
@@ -153,6 +162,14 @@ public class InGameView extends GameView {
             if(h.getOwner().equals(player)){
                 return h;
             }
+        }
+        return null;
+    }
+
+    private YourPlayerArea findAreaPlayer(Player player){
+        for(YourPlayerArea ap : areasPlayers){
+            if(ap.getPlayer().equals(player))
+                return ap;
         }
         return null;
     }
