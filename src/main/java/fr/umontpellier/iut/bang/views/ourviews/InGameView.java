@@ -6,10 +6,8 @@ import fr.umontpellier.iut.bang.IGame;
 import fr.umontpellier.iut.bang.IPlayer;
 import fr.umontpellier.iut.bang.logic.GameState;
 import fr.umontpellier.iut.bang.logic.Player;
-import fr.umontpellier.iut.bang.logic.cards.BlueCard;
 import fr.umontpellier.iut.bang.logic.cards.Card;
-import fr.umontpellier.iut.bang.logic.cards.Colt;
-import fr.umontpellier.iut.bang.logic.cards.WeaponCard;
+import fr.umontpellier.iut.bang.views.CardView;
 import fr.umontpellier.iut.bang.views.GameView;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
@@ -17,19 +15,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class InGameView extends GameView {
     private BangIHM main;
@@ -66,6 +60,15 @@ public class InGameView extends GameView {
         }
     };
 
+    //Listener pour les cartes pioché à résoudre
+    private ChangeListener<? super Card> whenDrawnCardChange = new ChangeListener<Card>() {
+
+        @Override
+        public void changed(ObservableValue<? extends Card> observableValue, Card card, Card t1) {
+
+        }
+    };
+
     @FXML
     private Button testCard;
 
@@ -84,6 +87,7 @@ public class InGameView extends GameView {
     public InGameView(IGame game, BangIHM main) {
         super(game);
         this.main = main;
+        setDrawnCardListener();
 
         areasPlayers = new ArrayList<>();
         playersHands = new ArrayList<>();
@@ -159,9 +163,33 @@ public class InGameView extends GameView {
         super.setCurrentPlayerChangesListener(whenCurrentPlayerChanges);
     }
 
+    public void setDrawnCardListener(){
+        getIGame().drawnCardsProperty().addListener(whenDrawnCardIsUpdate);
+    }
+
+
+    private ListChangeListener<Card> whenDrawnCardIsUpdate = new ListChangeListener<Card>() {
+        @Override
+        public void onChanged(Change<? extends Card> change) {
+            HBox contain = new HBox();
+            while(change.next()){
+                if(change.wasAdded()){
+                    for (Card c : change.getAddedSubList()){
+                        contain.getChildren().add(new DrawnCardView(new ICard(c), findPlayerArea(getIGame().getCurrentPlayer())));
+                    }
+                }
+                else if(change.wasRemoved()){
+                    for(Card c : change.getRemoved()){
+                        contain.getChildren().remove(c);
+                    }
+                }
+            }
+            getChildren().add(contain);
+        }
+    };
+
     @Override
     protected void setPassSelectedListener() {
-
     }
 
     @FXML
@@ -188,10 +216,13 @@ public class InGameView extends GameView {
         return null;
     }
 
-    private YourPlayerArea findAreaPlayer(Player player){
-        for(YourPlayerArea ap : areasPlayers){
-            if(ap.getPlayer().equals(player))
-                return ap;
+
+    private CardView findCardView(HBox container, Card card) {
+        for (Node n : container.getChildren()) {
+            CardView nodeCardView = (CardView) n;
+            Card nodeCard = nodeCardView.getCard();
+            if (nodeCard.equals(card))
+                return nodeCardView;
         }
         return null;
     }
