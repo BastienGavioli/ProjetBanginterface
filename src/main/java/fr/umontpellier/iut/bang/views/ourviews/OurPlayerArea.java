@@ -19,13 +19,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-
-import java.net.URL;
 
 
-public class YourPlayerArea extends PlayerArea {
+public class OurPlayerArea extends PlayerArea {
     private VBox rootPlayer;
     private Label name;
     private ImageView img;
@@ -33,7 +29,7 @@ public class YourPlayerArea extends PlayerArea {
     private HBox inPlay; //Stocke les cartes inPlay
 
 
-    public YourPlayerArea(IPlayer player, GameView gameView) {
+    public OurPlayerArea(IPlayer player, GameView gameView) {
         super(player, gameView);
 
         setOnMouseClicked(whenPlayerSelected);
@@ -50,10 +46,10 @@ public class YourPlayerArea extends PlayerArea {
 
 
         inPlay = new HBox();
-        inPlay.setMaxWidth(200);
+        inPlay.setMaxWidth(300);
         inPlay.setTranslateX(160);
         inPlay.setTranslateY(-155);
-        inPlay.getChildren().add(0,new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this));
+        inPlay.getChildren().add(0,new CardViewEssai(new ICard(new Colt()), OurPlayerArea.this));
 
         setInPlayListener(whenInPlayIsUpdated);
         setWeaponListener(whenWeaponChanges);
@@ -72,7 +68,9 @@ public class YourPlayerArea extends PlayerArea {
         return("images/characters/" + super.getIPlayer().getBangCharacter().getName().toLowerCase().replaceAll("\\s+","")+".png" );
     }
 
-
+    public ImageView getImg() {
+        return img;
+    }
 
     @Override
     protected void setHandListener(ListChangeListener<Card> whenHandIsUpdated) {
@@ -96,7 +94,8 @@ public class YourPlayerArea extends PlayerArea {
 
     @Override
     public void highlightCurrentArea() {
-        setStyle("-fx-border-color: red");
+        setStyle("-fx-border-color: red;" +
+                 "-fx-border-width: 5;");
     }
 
     @Override
@@ -122,7 +121,7 @@ public class YourPlayerArea extends PlayerArea {
                     for(Card c: change.getAddedSubList()) {
                         if(!(c instanceof WeaponCard)){
                             inPlay.getChildren().add(new CardViewEssai
-                                    (new ICard(c), YourPlayerArea.this));
+                                    (new ICard(c), OurPlayerArea.this));
                             //c.getSound();
                         }
                     }
@@ -143,10 +142,10 @@ public class YourPlayerArea extends PlayerArea {
         public void changed(ObservableValue<? extends WeaponCard> observableValue, WeaponCard oldWeapon, WeaponCard newWeapon) {
             inPlay.getChildren().remove(0);
             if(newWeapon == null){
-                inPlay.getChildren().add(0,new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this));
+                inPlay.getChildren().add(0,new CardViewEssai(new ICard(new Colt()), OurPlayerArea.this));
             }
             else{
-                inPlay.getChildren().add(0,new CardViewEssai(new ICard(newWeapon),YourPlayerArea.this));
+                inPlay.getChildren().add(0,new CardViewEssai(new ICard(newWeapon), OurPlayerArea.this));
             }
         }
     };
@@ -154,7 +153,7 @@ public class YourPlayerArea extends PlayerArea {
     EventHandler<MouseEvent> whenPlayerSelected = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent mouseEvent) {
-            YourPlayerArea selectedYourPlayerArea = (YourPlayerArea) mouseEvent.getSource();
+            OurPlayerArea selectedYourPlayerArea = (OurPlayerArea) mouseEvent.getSource();
             IPlayer target = selectedYourPlayerArea.getIPlayer();
             GameView currentGame = selectedYourPlayerArea.getGameView();
             currentGame.getIGame().onTargetSelection(target);

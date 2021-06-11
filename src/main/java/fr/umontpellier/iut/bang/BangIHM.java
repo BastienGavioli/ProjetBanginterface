@@ -7,7 +7,7 @@ import fr.umontpellier.iut.bang.views.StartView;
 import fr.umontpellier.iut.bang.views.ourviews.OurFirstView;
 import fr.umontpellier.iut.bang.views.ourviews.InGameView;
 import fr.umontpellier.iut.bang.views.ourviews.ReadRulesView;
-import fr.umontpellier.iut.bang.views.ourviews.YourStartView;
+import fr.umontpellier.iut.bang.views.ourviews.OurStartView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -131,7 +131,7 @@ public class BangIHM extends Application {
      * Pour instancier la vue de renseignement des noms des joueurs
      */
     private void initStartView() {
-        startView = new YourStartView();
+        startView = new OurStartView();
     }
 
     /**

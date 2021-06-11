@@ -7,8 +7,8 @@ import javafx.collections.ListChangeListener;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class YourStartView extends StartView {
-    public YourStartView() {
+public class OurStartView extends StartView {
+    public OurStartView() {
         super();
     }
 

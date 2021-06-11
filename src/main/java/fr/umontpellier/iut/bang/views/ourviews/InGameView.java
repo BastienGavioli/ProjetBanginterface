@@ -28,26 +28,26 @@ import java.util.ArrayList;
 public class InGameView extends GameView {
     private BangIHM main;
 
-    private ArrayList<YourPlayerArea> areasPlayers;
+    private ArrayList<OurPlayerArea> areasPlayers;
 
-    private ArrayList<YourHand> playersHands;
+    private ArrayList<HandView> playersHands;
 
     private ArrayList<VBox> playersBtn;
 
     /**
      * Listeners
      */
-    private ChangeListener<? super Player> getWhenCurrentPlayerChanges = new ChangeListener<Player>() {
+    private ChangeListener<? super Player> whenCurrentPlayerChanges = new ChangeListener<Player>() {
         @Override
-        public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
-            for(YourHand h: playersHands){
+        public void changed(ObservableValue<? extends Player> observableValue, Player oldPlayer, Player newPlayer) {
+            for(HandView h: playersHands){
                 h.setVisible(false);
             }
-            if (player!=null)
-                findPlayerArea(player).deHightlightCurrentArea();
-            if(t1!=null) {
-                findPlayerArea(t1).highlightCurrentArea();
-                findPlayerHand(t1).setVisible(true);
+            if (oldPlayer!=null)
+                findPlayerArea(oldPlayer).deHightlightCurrentArea();
+            if(newPlayer!=null) {
+                findPlayerArea(newPlayer).highlightCurrentArea();
+                findPlayerHand(newPlayer).setVisible(true);
 
             }
         }
@@ -60,11 +60,11 @@ public class InGameView extends GameView {
         }
     };
 
-    //Listener pour les cartes pioché à résoudre
-    private ChangeListener<? super Card> whenDrawnCardChange = new ChangeListener<Card>() {
+    //Listener pour les cartes piochés à résoudre
+    private ChangeListener<? super Card> whenDrawnCardChanges = new ChangeListener<Card>() {
 
         @Override
-        public void changed(ObservableValue<? extends Card> observableValue, Card card, Card t1) {
+        public void changed(ObservableValue<? extends Card> observableValue, Card oldCard, Card newCard) {
 
         }
     };
@@ -111,7 +111,7 @@ public class InGameView extends GameView {
 
             IPlayer iplayer = new IPlayer(game.getPlayers().get(i));
 
-            YourPlayerArea yourPlayerArea = new YourPlayerArea(iplayer, this);
+            OurPlayerArea yourPlayerArea = new OurPlayerArea(iplayer, this);
             getChildren().add(yourPlayerArea);
 
             //Sert à mettre les joueurs au bon endroit à 4 joueurs
@@ -120,14 +120,14 @@ public class InGameView extends GameView {
                     ((conv[i])%2+1)*200-((1-(conv[i])%2)*80));
 
             areasPlayers.add(yourPlayerArea);
-            playersHands.add(new YourHand(yourPlayerArea));
+            playersHands.add(new HandView(yourPlayerArea));
             getChildren().add(playersHands.get(i));
             deplacementVersCoord(playersHands.get(i), 700, 400);
             playersHands.get(i).setVisible(false);
         }
 
 
-        setCurrentPlayerChangesListener(getWhenCurrentPlayerChanges);
+        setCurrentPlayerChangesListener(whenCurrentPlayerChanges);
 
 
         game.run();
@@ -150,7 +150,7 @@ public class InGameView extends GameView {
 
     }
 
-    public YourPlayerArea getPlayerArea(int i) {
+    public OurPlayerArea getPlayerArea(int i) {
         return areasPlayers.get(i);
     }
 
@@ -201,8 +201,8 @@ public class InGameView extends GameView {
     }
 
 
-    private YourPlayerArea findPlayerArea(Player player){
-        for (YourPlayerArea pa : areasPlayers){
+    private OurPlayerArea findPlayerArea(Player player){
+        for (OurPlayerArea pa : areasPlayers){
             if(pa.getPlayer().equals(player)){
                 return pa;
             }
@@ -210,8 +210,8 @@ public class InGameView extends GameView {
         return null;
     }
 
-    private YourHand findPlayerHand(Player player){
-        for(YourHand h : playersHands){
+    private HandView findPlayerHand(Player player){
+        for(HandView h : playersHands){
             if(h.getOwner().equals(player)){
                 return h;
             }

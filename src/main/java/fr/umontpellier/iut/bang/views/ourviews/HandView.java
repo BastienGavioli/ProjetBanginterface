@@ -1,7 +1,6 @@
 package fr.umontpellier.iut.bang.views.ourviews;
 
 import fr.umontpellier.iut.bang.ICard;
-import fr.umontpellier.iut.bang.IPlayer;
 import fr.umontpellier.iut.bang.logic.Player;
 import fr.umontpellier.iut.bang.logic.cards.Card;
 import fr.umontpellier.iut.bang.views.CardView;
@@ -14,11 +13,11 @@ import javafx.scene.layout.HBox;
 // cette classe représente la vue de la main d'un joueur, elle est utilisée par la classe Hand afin
 // de pouvoir montrer la main du joueur courrant
 
-public class YourHand extends HBox {
+public class HandView extends HBox {
     private PlayerArea playerArea;
     private Player owner;
 
-    public YourHand(PlayerArea playerArea){
+    public HandView(PlayerArea playerArea){
         this.playerArea = playerArea;
         owner = this.playerArea.getIPlayer().getPlayer();
         setHandListener(whenHandIsUpdated);
@@ -36,7 +35,7 @@ public class YourHand extends HBox {
                 }
                 else if(change.wasRemoved()){
                     for(Card c : change.getRemoved()){
-                        getChildren().remove(findCardView(YourHand.this,c));
+                        getChildren().remove(findCardView(HandView.this,c));
                     }
                 }
             }
