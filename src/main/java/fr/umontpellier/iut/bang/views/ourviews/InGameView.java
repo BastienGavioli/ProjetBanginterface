@@ -170,7 +170,7 @@ public class InGameView extends GameView {
         getIGame().drawnCardsProperty().addListener(whenDrawnCardIsUpdate);
     }
 
-
+    //C'est ici que l'on gere l'affichage des cartes piochés pour les magasins
     private ListChangeListener<Card> whenDrawnCardIsUpdate = new ListChangeListener<Card>() {
         @Override
         public void onChanged(Change<? extends Card> change) {

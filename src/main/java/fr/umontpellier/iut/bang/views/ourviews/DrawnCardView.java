@@ -33,7 +33,7 @@ public class DrawnCardView extends CardViewEssai{
         ICard selectedICard = selectedCardView.getICard();
         IGame currentGame = selectedCardView.getPlayerArea().getGameView().getIGame();
         currentGame.onDrawnCardSelection(selectedICard);
-        System.out.println("oooooooooooooooo");
+        setVisible(false);
 
     };
 }
