@@ -1,13 +1,19 @@
 package fr.umontpellier.iut.bang.views.ourviews;
 
 import fr.umontpellier.iut.bang.BangIHM;
+import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IGame;
 import fr.umontpellier.iut.bang.IPlayer;
 import fr.umontpellier.iut.bang.logic.Player;
+import fr.umontpellier.iut.bang.logic.cards.BlueCard;
+import fr.umontpellier.iut.bang.logic.cards.Card;
+import fr.umontpellier.iut.bang.logic.cards.Colt;
+import fr.umontpellier.iut.bang.logic.cards.WeaponCard;
 import fr.umontpellier.iut.bang.views.GameView;
 import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -50,9 +56,20 @@ public class InGameView extends GameView {
 
     private ArrayList<VBox> playersBtn;
 
+
+
+    private ChangeListener<? super Player> getWhenCurrentPlayerChanges = new ChangeListener<Player>() {
+        @Override
+        public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
+            if (player!=null)
+                findPlayerArea(player).deHightlightCurrentArea();
+            if(t1!=null)
+                findPlayerArea(t1).highlightCurrentArea();
+        }
+    };
+
     public InGameView(IGame game, BangIHM main) {
         super(game);
-        game.run();
         this.main = main;
 
         areasPlayers = new ArrayList<>();
@@ -87,15 +104,18 @@ public class InGameView extends GameView {
             areasPlayers.add(yourPlayerArea);
             playersHands.add(new YourHand(yourPlayerArea));
             deplacementVersCoord(playersHands.get(i), 700, 400);
-
-            //A réactiver afin d'afficher les cartes en main (attention, il y en a plus que prévu)
-            /*YourHand yourHand = new YourHand(yourPlayerArea);
-            playersHands.add(yourHand);
-            getChildren().add(yourHand);*/
         }
 
+        setCurrentPlayerChangesListener(getWhenCurrentPlayerChanges);
+
+
+        game.run();
         getChildren().add(findPlayerHand(game.getCurrentPlayer()));
 
+    }
+
+    public void passOnClic(){
+        getIGame().onPass();
     }
 
     public void deplacementVersCoord(Node vBox, int x, int y){

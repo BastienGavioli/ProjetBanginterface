@@ -27,28 +27,28 @@ public class YourPlayerArea extends PlayerArea {
     Label name;
     ImageView img;
     HBox handView;
-    private HBox inPlay;
-    private CardViewEssai weapon;
+    private HBox inPlay; //Stoque les cartes inPlay
+    private CardViewEssai weapon; //Stocke l'arme
 
 
-
-    private ListChangeListener<Card> whenHandIsUpdate = new ListChangeListener<Card>() {
-        @Override
-        public void onChanged(Change<? extends Card> change) {
-            while (change.next()){
-                if(change.wasAdded()){
-                    for(Card c: change.getAddedSubList())
-                        handView.getChildren().add(new CardViewEssai
-                                (new ICard(c),  YourPlayerArea.this));
-                }
-                else if(change.wasRemoved()){
-                    for(Card c: change.getRemoved())
-                        handView.getChildren().remove(findCardView(handView, c));
+    /* L'update de la main est dans YourHand
+        private ListChangeListener<Card> whenHandIsUpdate = new ListChangeListener<Card>() {
+            @Override
+            public void onChanged(Change<? extends Card> change) {
+                while (change.next()){
+                    if(change.wasAdded()){
+                        for(Card c: change.getAddedSubList())
+                            handView.getChildren().add(new CardViewEssai
+                                    (new ICard(c),  YourPlayerArea.this));
+                    }
+                    else if(change.wasRemoved()){
+                        for(Card c: change.getRemoved())
+                            handView.getChildren().remove(findCardView(handView, c));
+                    }
                 }
             }
-        }
-    };
-
+        };
+    */
     public YourPlayerArea(IPlayer player, GameView gameView) {
         super(player, gameView);
         rootPlayer = new VBox();
@@ -62,20 +62,18 @@ public class YourPlayerArea extends PlayerArea {
 
         weapon = new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this);
         weapon.setTranslateX(160);
-        weapon.setTranslateY(-280);
+        weapon.setTranslateY(-235);
 
         inPlay = new HBox();
         inPlay.setMaxWidth(300);
         inPlay.setTranslateX(160);
         inPlay.setTranslateY(-155);
 
-        setHandListener(whenHandIsUpdate);
         setInPlayListener(whenInPlayIsUpdated);
         setWeaponListener(whenWeaponChanges);
 
         rootPlayer.getChildren().add(img);
         rootPlayer.getChildren().add(name);
-        //rootPlayer.getChildren().add(handView);
         rootPlayer.getChildren().add(inPlay);
         rootPlayer.getChildren().add(weapon);
         getChildren().add(rootPlayer);
