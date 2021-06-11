@@ -4,6 +4,7 @@ import fr.umontpellier.iut.bang.BangIHM;
 import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IGame;
 import fr.umontpellier.iut.bang.IPlayer;
+import fr.umontpellier.iut.bang.logic.GameState;
 import fr.umontpellier.iut.bang.logic.Player;
 import fr.umontpellier.iut.bang.logic.cards.BlueCard;
 import fr.umontpellier.iut.bang.logic.cards.Card;
@@ -36,25 +37,12 @@ public class InGameView extends GameView {
     private ArrayList<YourPlayerArea> areasPlayers;
 
     private ArrayList<YourHand> playersHands;
-    
-
-    @FXML
-    private Button testCard;
-
-    @FXML
-    private Button retourMenuBtn;
-
-    @FXML
-    private Button passBtn;
-
-    @FXML
-    private Button parametresBtn;
-
 
     private ArrayList<VBox> playersBtn;
 
-
-
+    /**
+     * Listeners
+     */
     private ChangeListener<? super Player> getWhenCurrentPlayerChanges = new ChangeListener<Player>() {
         @Override
         public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
@@ -71,12 +59,37 @@ public class InGameView extends GameView {
         }
     };
 
+    private ChangeListener<? super GameState> whenStateChanges = new ChangeListener<GameState>() {
+        @Override
+        public void changed(ObservableValue<? extends GameState> observableValue, GameState oldState, GameState newState) {
+            instruction.setText(newState.toString());
+        }
+    };
+
+    @FXML
+    private Button testCard;
+
+    @FXML
+    private Button retourMenuBtn;
+
+    @FXML
+    private Button passBtn;
+
+    @FXML
+    private Button parametresBtn;
+
+    @FXML
+    private Label instruction;
+
     public InGameView(IGame game, BangIHM main) {
         super(game);
         this.main = main;
 
         areasPlayers = new ArrayList<>();
         playersHands = new ArrayList<>();
+        instruction = new Label("");
+
+        getIGame().currentStateProperty().addListener(whenStateChanges);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/inGameView.fxml"));
 
