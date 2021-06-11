@@ -88,6 +88,7 @@ public class InGameView extends GameView {
         super(game);
         this.main = main;
         setDrawnCardListener();
+        setTargetListener();
 
         areasPlayers = new ArrayList<>();
         playersHands = new ArrayList<>();
@@ -142,7 +143,7 @@ public class InGameView extends GameView {
     public void deplacementVersCoord(Node vBox, int x, int y){
         TranslateTransition transition;
 
-        Duration duration = Duration.millis(1500);
+        Duration duration = Duration.millis(500);
         transition = new TranslateTransition(duration, vBox);
         transition.setByX(x);
         transition.setByY(y);
@@ -170,6 +171,10 @@ public class InGameView extends GameView {
         getIGame().drawnCardsProperty().addListener(whenDrawnCardIsUpdate);
     }
 
+    public void setTargetListener(){
+        getIGame().getTargetPlayerProperty().addListener(whenTargetChange);
+    }
+
     //C'est ici que l'on gere l'affichage des cartes piochés pour les magasins
     private ListChangeListener<Card> whenDrawnCardIsUpdate = new ListChangeListener<Card>() {
         @Override
@@ -188,6 +193,22 @@ public class InGameView extends GameView {
                 }
             }
             getChildren().add(contain);
+        }
+    };
+    private ChangeListener<? super Player> whenTargetChange = new ChangeListener<Player>() {
+        @Override
+        public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
+            HandView opa;
+            if(player!=null && player!=getIGame().getCurrentPlayer()){
+                opa = findPlayerHand(player);
+                opa.setVisible(false);
+                deplacementVersCoord(opa, 0, 200);
+            }
+            if(t1!=null) {
+                opa = findPlayerHand(t1);
+                opa.setVisible(true);
+                deplacementVersCoord(opa, 0, -200);
+            }
         }
     };
 

@@ -246,6 +246,13 @@ public class Game {
     /**
      * Accès à la propriété
      */
+    public ObjectProperty<Player> targetPlayerProperty() {
+        return targetPlayer;
+    }
+
+    /**
+     * Accès à la propriété
+     */
     public ObjectProperty<GameState> currentStateProperty() {
         return currentState;
     }
@@ -357,7 +364,7 @@ public class Game {
         List<BangCharacter> possibleCharacters = new ArrayList<>();
         possibleCharacters.add(new BartCassidy());
         possibleCharacters.add(new BlackJack());
-        possibleCharacters.add(new JesseJones());
+//        possibleCharacters.add(new JesseJones());
         possibleCharacters.add(new Jourdonnais());
         possibleCharacters.add(new KitCarlson());
         possibleCharacters.add(new PaulRegret());

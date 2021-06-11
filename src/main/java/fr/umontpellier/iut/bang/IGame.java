@@ -114,6 +114,12 @@ public class IGame {
     /**
      * Accès à la propriété
      */
+    public ObjectProperty<Player> getTargetPlayerProperty() {
+        return game.targetPlayerProperty();
+    }
+    /**
+     * Accès à la propriété
+     */
     public ObservableList<Player> getPlayers() {
         return game.getPlayers();
     }
