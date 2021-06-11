@@ -12,15 +12,14 @@ import fr.umontpellier.iut.bang.views.PlayerArea;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import java.util.ArrayList;
 
 public class YourPlayerArea extends PlayerArea {
     VBox rootPlayer;
@@ -30,26 +29,12 @@ public class YourPlayerArea extends PlayerArea {
     private HBox inPlay; //Stoque les cartes inPlay
 
 
-    /* L'update de la main est dans YourHand
-        private ListChangeListener<Card> whenHandIsUpdate = new ListChangeListener<Card>() {
-            @Override
-            public void onChanged(Change<? extends Card> change) {
-                while (change.next()){
-                    if(change.wasAdded()){
-                        for(Card c: change.getAddedSubList())
-                            handView.getChildren().add(new CardViewEssai
-                                    (new ICard(c),  YourPlayerArea.this));
-                    }
-                    else if(change.wasRemoved()){
-                        for(Card c: change.getRemoved())
-                            handView.getChildren().remove(findCardView(handView, c));
-                    }
-                }
-            }
-        };
-    */
     public YourPlayerArea(IPlayer player, GameView gameView) {
         super(player, gameView);
+
+        setOnMouseClicked(whenPlayerSelected);
+
+
         rootPlayer = new VBox();
         rootPlayer.setId("rootPlayer");
         name = new Label(player.getName());
@@ -158,6 +143,16 @@ public class YourPlayerArea extends PlayerArea {
             else{
                 inPlay.getChildren().add(0,new CardViewEssai(new ICard(newWeapon),YourPlayerArea.this));
             }
+        }
+    };
+
+    EventHandler<MouseEvent> whenPlayerSelected = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            YourPlayerArea selectedYourPlayerArea = (YourPlayerArea) mouseEvent.getSource();
+            IPlayer target = selectedYourPlayerArea.getIPlayer();
+            GameView currentGame = selectedYourPlayerArea.getGameView();
+            currentGame.getIGame().onTargetSelection(target);
         }
     };
 

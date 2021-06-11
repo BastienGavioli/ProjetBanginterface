@@ -75,11 +75,15 @@ public class CardViewEssai extends CardView {
     EventHandler<MouseEvent> whenCardSelected = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent mouseEvent) {
+            //Mise à jour des variables
             CardViewEssai selectedCardView = (CardViewEssai) mouseEvent.getSource();
             ICard selectedICard = selectedCardView.getICard();
             IPlayer owner = selectedCardView.getPlayerArea().getIPlayer();
             IGame currentGame = selectedCardView.getPlayerArea().getGameView().getIGame();
-            currentGame.onCardSelection(selectedICard,owner);
+
+            //Action !
+                currentGame.onCardSelection(selectedICard,owner);
+
         }
     };
 
