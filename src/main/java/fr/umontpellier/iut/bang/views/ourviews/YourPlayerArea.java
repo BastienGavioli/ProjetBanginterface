@@ -19,6 +19,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.net.URL;
 
 
 public class YourPlayerArea extends PlayerArea {
@@ -119,6 +123,7 @@ public class YourPlayerArea extends PlayerArea {
                         if(!(c instanceof WeaponCard)){
                             inPlay.getChildren().add(new CardViewEssai
                                     (new ICard(c), YourPlayerArea.this));
+                            //c.getSound();
                         }
                     }
                 }

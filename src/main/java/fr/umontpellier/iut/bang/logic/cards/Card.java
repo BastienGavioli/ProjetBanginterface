@@ -1,6 +1,10 @@
 package fr.umontpellier.iut.bang.logic.cards;
 
 import fr.umontpellier.iut.bang.logic.Player;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.net.URL;
 
 public abstract class Card {
     /**
@@ -91,5 +95,15 @@ public abstract class Card {
 
     public String getImageName() {
         return "images/cards/" + getName().toLowerCase(). replaceAll("[. !]+", "")+ "_" + getValueString() + getSuit().toJSON() + ".png";
+    }
+    public void getSound(){
+        URL url = getClass().getClassLoader().getResource(this.getName()  + ".mp3");
+        Media media = new Media(url.toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+        /*if(this.getName().equals("Scope"))
+            return "Arme.mp3";
+        else
+            return this.getName()  + ".mp3";*/
     }
 }

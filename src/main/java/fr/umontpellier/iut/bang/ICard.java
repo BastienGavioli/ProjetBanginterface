@@ -2,6 +2,10 @@ package fr.umontpellier.iut.bang;
 
 import fr.umontpellier.iut.bang.logic.cards.Card;
 import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+import java.net.URL;
 
 public class ICard {
 
@@ -22,6 +26,10 @@ public class ICard {
     public String getImageName() {
         return card.getImageName();
     }
+
+    /*public String getSound(){
+        return card.getSound();
+    }*/
 
     public Card getCard() {
         return card;
