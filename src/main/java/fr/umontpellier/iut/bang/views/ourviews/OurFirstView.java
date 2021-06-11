@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 
 
-public class BangIHMControl extends GameView {
+public class OurFirstView extends GameView {
     private BangIHM main; //Permet d'acceder aux fonctions du main
 
     @FXML
@@ -28,7 +28,7 @@ public class BangIHMControl extends GameView {
     @FXML
     private Button parametres;
 
-    public BangIHMControl(IGame game, BangIHM main) {
+    public OurFirstView(IGame game, BangIHM main) {
         super(game);
         this.main = main;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/myStartView.fxml"));

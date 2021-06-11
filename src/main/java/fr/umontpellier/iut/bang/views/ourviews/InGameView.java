@@ -36,10 +36,7 @@ public class InGameView extends GameView {
     private ArrayList<YourPlayerArea> areasPlayers;
 
     private ArrayList<YourHand> playersHands;
-
-    private Hand handView;
-
-
+    
 
     @FXML
     private Button testCard;

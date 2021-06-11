@@ -1,24 +1,15 @@
 package fr.umontpellier.iut.bang;
 
 import fr.umontpellier.iut.bang.logic.Game;
-import fr.umontpellier.iut.bang.logic.GameState;
-import fr.umontpellier.iut.bang.logic.Player;
-import fr.umontpellier.iut.bang.logic.cards.Card;
 import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.ResultsView;
 import fr.umontpellier.iut.bang.views.StartView;
-import fr.umontpellier.iut.bang.views.ourviews.BangIHMControl;
+import fr.umontpellier.iut.bang.views.ourviews.OurFirstView;
 import fr.umontpellier.iut.bang.views.ourviews.InGameView;
 import fr.umontpellier.iut.bang.views.ourviews.ReadRulesView;
 import fr.umontpellier.iut.bang.views.ourviews.YourStartView;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
-import javafx.collections.WeakListChangeListener;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -37,8 +28,7 @@ public class BangIHM extends Application {
      * Attributs View
      */
     private GameView firstView;
-    private InGameView inGame; //Vue utilisée pendan
-    // t le jeu
+    private InGameView inGame; //Vue utilisée pendant le jeu
     private StartView startView;
     private ReadRulesView readRulesView;
     private ResultsView resultsView;
@@ -148,7 +138,7 @@ public class BangIHM extends Application {
      * Pour instancier la vue d'arrivé dans le jeu
      */
     private void initGameView() {
-        firstView = new BangIHMControl(game, this);
+        firstView = new OurFirstView(game, this);
     }
 
     /**
