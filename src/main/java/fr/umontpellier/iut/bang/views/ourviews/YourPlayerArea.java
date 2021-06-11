@@ -26,11 +26,11 @@ import java.net.URL;
 
 
 public class YourPlayerArea extends PlayerArea {
-    VBox rootPlayer;
-    Label name;
-    ImageView img;
-    HBox handView;
-    private HBox inPlay; //Stoque les cartes inPlay
+    private VBox rootPlayer;
+    private Label name;
+    private ImageView img;
+    private HBox handView;
+    private HBox inPlay; //Stocke les cartes inPlay
 
 
     public YourPlayerArea(IPlayer player, GameView gameView) {
@@ -50,7 +50,7 @@ public class YourPlayerArea extends PlayerArea {
 
 
         inPlay = new HBox();
-        inPlay.setMaxWidth(300);
+        inPlay.setMaxWidth(200);
         inPlay.setTranslateX(160);
         inPlay.setTranslateY(-155);
         inPlay.getChildren().add(0,new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this));
