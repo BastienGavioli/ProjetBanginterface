@@ -37,15 +37,15 @@ public class InGameView extends GameView {
     /**
      * Listeners
      */
-    private ChangeListener<? super Player> whenCurrentPlayerChanges = new ChangeListener<Player>() {
+    private ChangeListener<? super Player> whenCurrentPlayerChanges = new ChangeListener<>() {
         @Override
         public void changed(ObservableValue<? extends Player> observableValue, Player oldPlayer, Player newPlayer) {
-            for(HandView h: playersHands){
+            for (HandView h : playersHands) {
                 h.setVisible(false);
             }
-            if (oldPlayer!=null)
+            if (oldPlayer != null)
                 findPlayerArea(oldPlayer).deHightlightCurrentArea();
-            if(newPlayer!=null) {
+            if (newPlayer != null) {
                 findPlayerArea(newPlayer).highlightCurrentArea();
                 findPlayerHand(newPlayer).setVisible(true);
 
@@ -53,7 +53,7 @@ public class InGameView extends GameView {
         }
     };
 
-    private ChangeListener<? super GameState> whenStateChanges = new ChangeListener<GameState>() {
+    private ChangeListener<? super GameState> whenStateChanges = new ChangeListener<>() {
         @Override
         public void changed(ObservableValue<? extends GameState> observableValue, GameState oldState, GameState newState) {
             instruction.setText(newState.toString());
@@ -61,12 +61,8 @@ public class InGameView extends GameView {
     };
 
     //Listener pour les cartes piochés à résoudre
-    private ChangeListener<? super Card> whenDrawnCardChanges = new ChangeListener<Card>() {
+    private ChangeListener<? super Card> whenDrawnCardChanges = (ChangeListener<Card>) (observableValue, oldCard, newCard) -> {
 
-        @Override
-        public void changed(ObservableValue<? extends Card> observableValue, Card oldCard, Card newCard) {
-
-        }
     };
 
     @FXML
@@ -204,7 +200,7 @@ public class InGameView extends GameView {
                 opa.setVisible(false);
                 deplacementVersCoord(opa, 0, 200);
             }
-            if(t1!=null) {
+            if(t1!=null  && t1!=getIGame().getCurrentPlayer()) {
                 opa = findPlayerHand(t1);
                 opa.setVisible(true);
                 deplacementVersCoord(opa, 0, -200);

@@ -15,7 +15,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+
+import java.net.URL;
 
 public class CardViewEssai extends CardView {
     private Boolean isVisible = true;
@@ -82,8 +86,16 @@ public class CardViewEssai extends CardView {
             IGame currentGame = selectedCardView.getPlayerArea().getGameView().getIGame();
 
             //Action !
-                currentGame.onCardSelection(selectedICard,owner);
-
+            currentGame.onCardSelection(selectedICard,owner);
+            URL url = getClass().getClassLoader().getResource("sounds/"+selectedICard.getName()+".mp3");
+            if(url!=null) {
+                Media media = new Media(url.toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
+            }
+            else{
+                System.out.println("sounds/"+selectedICard.getName()+".mp3");
+            }
         }
     };
 
