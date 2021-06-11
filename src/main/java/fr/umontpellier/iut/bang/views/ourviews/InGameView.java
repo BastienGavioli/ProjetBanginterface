@@ -59,22 +59,14 @@ public class InGameView extends GameView {
         @Override
         public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
             for(YourHand h: playersHands){
-                //deplacementVersCoord(h,0,0);
                 h.setVisible(false);
             }
             if (player!=null)
                 findPlayerArea(player).deHightlightCurrentArea();
             if(t1!=null) {
                 findPlayerArea(t1).highlightCurrentArea();
-                //getChildren().remove(handView);
-                //handView.emptyHand();
-                //handView.setName(t1.getName());
-                //handView = new Hand();
-                //handView.renewHand(findPlayerHand(t1));
-                //handView.getChildren().add(findPlayerHand(t1));
                 findPlayerHand(t1).setVisible(true);
-                //getChildren().add(handView);
-                //deplacementVersCoord(findPlayerHand(t1),700,400);
+
             }
         }
     };
@@ -113,17 +105,13 @@ public class InGameView extends GameView {
             deplacementVersCoord(playersHands.get(i), 700, 400);
             playersHands.get(i).setVisible(false);
         }
-        //playersHands.get(0).setVisible(true);
 
-        //handView = new Hand();
-        //handView.getChildren().add(0,playersHands.get(0));
-        //getChildren().add(handView);
 
         setCurrentPlayerChangesListener(getWhenCurrentPlayerChanges);
 
 
         game.run();
-        //getChildren().add(findPlayerHand(game.getCurrentPlayer()));
+
 
     }
 
@@ -168,18 +156,6 @@ public class InGameView extends GameView {
         main.changeSceneToStartView();
     }
 
-   /* ChangeListener<? super Player> whenCurrentPlayerChanges = new ChangeListener<Player>() {
-        @Override
-        public void changed(ObservableValue<? extends Player> observableValue, Player oldPlayer, Player newPlayer) {
-            if(oldPlayer != null){
-                findPlayerArea(oldPlayer).deHightlightCurrentArea();
-            }
-            findPlayerArea(newPlayer).highlightCurrentArea();
-            handView.emptyHand();
-            handView.setName(newPlayer.getName());
-            handView.renewHand(findPlayerHand(newPlayer));
-        }
-    };*/
 
     private YourPlayerArea findPlayerArea(Player player){
         for (YourPlayerArea pa : areasPlayers){
