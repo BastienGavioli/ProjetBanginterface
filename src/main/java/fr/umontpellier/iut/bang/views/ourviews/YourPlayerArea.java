@@ -28,7 +28,6 @@ public class YourPlayerArea extends PlayerArea {
     ImageView img;
     HBox handView;
     private HBox inPlay; //Stoque les cartes inPlay
-    private CardViewEssai weapon; //Stocke l'arme
 
 
     /* L'update de la main est dans YourHand
@@ -60,9 +59,6 @@ public class YourPlayerArea extends PlayerArea {
         img.setFitWidth(150);
         handView = new HBox();
 
-        //weapon = new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this);
-        //weapon.setTranslateX(160);
-        //weapon.setTranslateY(-235);
 
         inPlay = new HBox();
         inPlay.setMaxWidth(300);
@@ -76,7 +72,6 @@ public class YourPlayerArea extends PlayerArea {
         rootPlayer.getChildren().add(img);
         rootPlayer.getChildren().add(name);
         rootPlayer.getChildren().add(inPlay);
-        //rootPlayer.getChildren().add(weapon);
         getChildren().add(rootPlayer);
 
 
@@ -156,31 +151,14 @@ public class YourPlayerArea extends PlayerArea {
     private ChangeListener<? super WeaponCard> whenWeaponChanges = new ChangeListener<WeaponCard>() {
         @Override
         public void changed(ObservableValue<? extends WeaponCard> observableValue, WeaponCard oldWeapon, WeaponCard newWeapon) {
-            //rootPlayer.getChildren().remove(weapon);
             inPlay.getChildren().remove(0);
             if(newWeapon == null){
                 inPlay.getChildren().add(0,new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this));
             }
             else{
                 inPlay.getChildren().add(0,new CardViewEssai(new ICard(newWeapon),YourPlayerArea.this));
-                //weapon =new CardViewEssai(new ICard(newWeapon),YourPlayerArea.this);
             }
-            //weapon.setTranslateX(160);
-            //weapon.setTranslateY(-280);
-            //rootPlayer.getChildren().add(weapon);
         }
     };
-
-
-
-    /*private CardViewEssai findWeaponCardView(WeaponCard weaponCard){
-        for (Node c : inPlay.getChildren()){
-            CardViewEssai weapon = (CardViewEssai) c;
-            if(weapon.getCard().equals(weaponCard)){
-                return weapon;
-            }
-        }
-        return null;
-    }*/
 
 }
