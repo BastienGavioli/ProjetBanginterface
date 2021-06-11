@@ -61,10 +61,24 @@ public class InGameView extends GameView {
     private ChangeListener<? super Player> getWhenCurrentPlayerChanges = new ChangeListener<Player>() {
         @Override
         public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
+            for(YourHand h: playersHands){
+                //deplacementVersCoord(h,0,0);
+                h.setVisible(false);
+            }
             if (player!=null)
                 findPlayerArea(player).deHightlightCurrentArea();
-            if(t1!=null)
+            if(t1!=null) {
                 findPlayerArea(t1).highlightCurrentArea();
+                //getChildren().remove(handView);
+                //handView.emptyHand();
+                //handView.setName(t1.getName());
+                //handView = new Hand();
+                //handView.renewHand(findPlayerHand(t1));
+                //handView.getChildren().add(findPlayerHand(t1));
+                findPlayerHand(t1).setVisible(true);
+                //getChildren().add(handView);
+                //deplacementVersCoord(findPlayerHand(t1),700,400);
+            }
         }
     };
 
@@ -79,11 +93,6 @@ public class InGameView extends GameView {
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
-
-
-        handView = new Hand();
-
-        getChildren().add(handView);
 
         try {
             fxmlLoader.load();
@@ -103,14 +112,21 @@ public class InGameView extends GameView {
 
             areasPlayers.add(yourPlayerArea);
             playersHands.add(new YourHand(yourPlayerArea));
+            getChildren().add(playersHands.get(i));
             deplacementVersCoord(playersHands.get(i), 700, 400);
+            playersHands.get(i).setVisible(false);
         }
+        //playersHands.get(0).setVisible(true);
+
+        //handView = new Hand();
+        //handView.getChildren().add(0,playersHands.get(0));
+        //getChildren().add(handView);
 
         setCurrentPlayerChangesListener(getWhenCurrentPlayerChanges);
 
 
         game.run();
-        getChildren().add(findPlayerHand(game.getCurrentPlayer()));
+        //getChildren().add(findPlayerHand(game.getCurrentPlayer()));
 
     }
 
@@ -155,7 +171,7 @@ public class InGameView extends GameView {
         main.changeSceneToStartView();
     }
 
-    ChangeListener<? super Player> whenCurrentPlayerChanges = new ChangeListener<Player>() {
+   /* ChangeListener<? super Player> whenCurrentPlayerChanges = new ChangeListener<Player>() {
         @Override
         public void changed(ObservableValue<? extends Player> observableValue, Player oldPlayer, Player newPlayer) {
             if(oldPlayer != null){
@@ -163,10 +179,10 @@ public class InGameView extends GameView {
             }
             findPlayerArea(newPlayer).highlightCurrentArea();
             handView.emptyHand();
-            //handView.setName(newPlayer.getName());
-            //handView.renewHand(findPlayerHand(newPlayer));
+            handView.setName(newPlayer.getName());
+            handView.renewHand(findPlayerHand(newPlayer));
         }
-    };
+    };*/
 
     private YourPlayerArea findPlayerArea(Player player){
         for (YourPlayerArea pa : areasPlayers){

@@ -60,14 +60,15 @@ public class YourPlayerArea extends PlayerArea {
         img.setFitWidth(150);
         handView = new HBox();
 
-        weapon = new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this);
-        weapon.setTranslateX(160);
-        weapon.setTranslateY(-235);
+        //weapon = new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this);
+        //weapon.setTranslateX(160);
+        //weapon.setTranslateY(-235);
 
         inPlay = new HBox();
         inPlay.setMaxWidth(300);
         inPlay.setTranslateX(160);
         inPlay.setTranslateY(-155);
+        inPlay.getChildren().add(0,new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this));
 
         setInPlayListener(whenInPlayIsUpdated);
         setWeaponListener(whenWeaponChanges);
@@ -75,7 +76,7 @@ public class YourPlayerArea extends PlayerArea {
         rootPlayer.getChildren().add(img);
         rootPlayer.getChildren().add(name);
         rootPlayer.getChildren().add(inPlay);
-        rootPlayer.getChildren().add(weapon);
+        //rootPlayer.getChildren().add(weapon);
         getChildren().add(rootPlayer);
 
 
@@ -155,16 +156,18 @@ public class YourPlayerArea extends PlayerArea {
     private ChangeListener<? super WeaponCard> whenWeaponChanges = new ChangeListener<WeaponCard>() {
         @Override
         public void changed(ObservableValue<? extends WeaponCard> observableValue, WeaponCard oldWeapon, WeaponCard newWeapon) {
-            rootPlayer.getChildren().remove(weapon);
+            //rootPlayer.getChildren().remove(weapon);
+            inPlay.getChildren().remove(0);
             if(newWeapon == null){
-                weapon = new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this);
+                inPlay.getChildren().add(0,new CardViewEssai(new ICard(new Colt()),YourPlayerArea.this));
             }
             else{
-                weapon =new CardViewEssai(new ICard(newWeapon),YourPlayerArea.this);
+                inPlay.getChildren().add(0,new CardViewEssai(new ICard(newWeapon),YourPlayerArea.this));
+                //weapon =new CardViewEssai(new ICard(newWeapon),YourPlayerArea.this);
             }
-            weapon.setTranslateX(160);
-            weapon.setTranslateY(-280);
-            rootPlayer.getChildren().add(weapon);
+            //weapon.setTranslateX(160);
+            //weapon.setTranslateY(-280);
+            //rootPlayer.getChildren().add(weapon);
         }
     };
 

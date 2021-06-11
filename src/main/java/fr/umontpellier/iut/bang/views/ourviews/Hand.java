@@ -11,29 +11,28 @@ import javafx.scene.layout.VBox;
 //et s'actualise quand le joueur courrant change, montrant la main du nouveau joueur courrant
 
 public class Hand extends VBox {
-    private Label name;
+    //private Label name;
 
     public Hand( ){
-        name = new Label();
-        getChildren().add(name);
+        //name = new Label();
+        //getChildren().add(0, name);
     }
 
-    public void setName(String name) {
+    /*public void setName(String name) {
         this.name = new Label(name);
-    }
+    }*/
 
-    public Label getName() {
+   /* public Label getName() {
         return name;
-    }
+    }*/
 
     public void emptyHand(){
-        for(Node n : getChildren()){
-            getChildren().remove(n);
-        }
+        getChildren().remove(0);
+        //getChildren().remove(1);
     }
 
     public void renewHand(YourHand playerHand){
-        getChildren().add(name);
-        getChildren().add(playerHand.getVueMain());
+        //getChildren().add(0,name);
+        getChildren().add(playerHand);
     }
 }
