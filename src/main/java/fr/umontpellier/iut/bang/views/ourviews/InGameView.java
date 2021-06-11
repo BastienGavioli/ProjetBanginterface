@@ -114,7 +114,10 @@ public class InGameView extends GameView {
             YourPlayerArea yourPlayerArea = new YourPlayerArea(iplayer, this);
             getChildren().add(yourPlayerArea);
 
-            deplacementVersCoord(yourPlayerArea, ((i/2)+1)*200-((1-i/2)*150), ((i)%2+1)*200-((1-(i)%2)*80));
+            //Sert à mettre les joueurs au bon endroit à 4 joueurs
+            int[] conv = {0, 2, 3, 1};
+            deplacementVersCoord(yourPlayerArea, ((conv[i]/2)+1)*200-((1-conv[i]/2)*150),
+                    ((conv[i])%2+1)*200-((1-(conv[i])%2)*80));
 
             areasPlayers.add(yourPlayerArea);
             playersHands.add(new YourHand(yourPlayerArea));
