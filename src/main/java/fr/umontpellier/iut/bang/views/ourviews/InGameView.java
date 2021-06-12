@@ -253,4 +253,9 @@ public class InGameView extends GameView {
         return null;
     }
 
+    @FXML
+    public void parametres() {
+        main.changeSceneParametersView();
+    }
+
 }

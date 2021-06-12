@@ -9,7 +9,7 @@
         <font>
             <Font size="15.0" />
         </font></Button>
-    <Button id="parametre" layoutX="1021.0" layoutY="6.0" maxHeight="252.0" maxWidth="278.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" text="">
+    <Button id="parametre" onAction="#parametres" layoutX="1021.0" layoutY="6.0" maxHeight="252.0" maxWidth="278.0" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="0.0" text="">
         <font>
             <Font size="15.0" />
         </font></Button>
