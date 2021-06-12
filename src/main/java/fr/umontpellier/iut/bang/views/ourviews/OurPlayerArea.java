@@ -68,10 +68,6 @@ public class OurPlayerArea extends PlayerArea {
         return("images/characters/" + super.getIPlayer().getBangCharacter().getName().toLowerCase().replaceAll("\\s+","")+".png" );
     }
 
-    public ImageView getImg() {
-        return img;
-    }
-
     @Override
     protected void setHandListener(ListChangeListener<Card> whenHandIsUpdated) {
         super.setHandListener(whenHandIsUpdated);
@@ -94,13 +90,12 @@ public class OurPlayerArea extends PlayerArea {
 
     @Override
     public void highlightCurrentArea() {
-        setStyle("-fx-border-color: red;" +
-                 "-fx-border-width: 5;");
+        name.setStyle("-fx-border-color: red");
     }
 
     @Override
     public void deHightlightCurrentArea() {
-        setStyle("-fx-border: none");
+        name.setStyle("-fx-border: none");
     }
 
     private CardView findCardView(HBox container, Card card) {
