@@ -244,4 +244,5 @@ public class InGameView extends GameView {
         }
         return null;
     }
+
 }

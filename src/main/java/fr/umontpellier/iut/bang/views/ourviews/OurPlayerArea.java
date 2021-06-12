@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
 
 
 public class OurPlayerArea extends PlayerArea {
@@ -37,12 +38,14 @@ public class OurPlayerArea extends PlayerArea {
         rootPlayer = new VBox();
         rootPlayer.setId("rootPlayer");
         name = new Label(player.getName());
+        name.setStyle("-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
         rootPlayer.setAlignment(Pos.CENTER);
         img = new ImageView(getImageName());
         img.setFitHeight(200);
         img.setFitWidth(150);
 
         handView = new HBox();
+
 
         inPlay = new HBox();
         inPlay.setMaxWidth(300);
@@ -89,12 +92,14 @@ public class OurPlayerArea extends PlayerArea {
 
     @Override
     public void highlightCurrentArea() {
-        name.setStyle("-fx-border-color: red");
+        name.setStyle("-fx-border-color: red;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
+
+
     }
 
     @Override
     public void deHightlightCurrentArea() {
-        name.setStyle("-fx-border: none");
+        name.setStyle("-fx-border: none;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
     }
 
     private CardView findCardView(HBox container, Card card) {

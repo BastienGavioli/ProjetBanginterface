@@ -7,6 +7,7 @@ import fr.umontpellier.iut.bang.views.CardView;
 import fr.umontpellier.iut.bang.views.PlayerArea;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
