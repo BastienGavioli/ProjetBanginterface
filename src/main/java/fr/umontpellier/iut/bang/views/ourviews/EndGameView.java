@@ -15,18 +15,17 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 import java.util.Optional;
 
-public class EndGameView extends GameView {
+public class EndGameView extends ResultsView {
 
     private BangIHM main;
 
     @FXML
     private Label winners;
 
-    public EndGameView(IGame game, BangIHM main) {
-        super(game);
+    public EndGameView(BangIHM main, IGame game) {
+        super(main);
         this.main = main;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/endGameView.fxml"));
-        fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
         for(Player p : game.winnersProperty())
@@ -39,16 +38,14 @@ public class EndGameView extends GameView {
         }
     }
 
+    @FXML
     @Override
-    protected void bindNextActionMessage() {
+    protected void playAgain() {
 
     }
 
+    @FXML
     @Override
-    protected void setPassSelectedListener() {
-
-    }
-
     public void stop() {
         main.onStopGame();
     }
