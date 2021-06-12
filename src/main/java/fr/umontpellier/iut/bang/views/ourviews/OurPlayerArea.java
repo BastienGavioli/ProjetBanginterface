@@ -48,8 +48,8 @@ public class OurPlayerArea extends PlayerArea {
 
 
         inPlay = new HBox();
-        inPlay.setMaxWidth(300);
-        inPlay.setTranslateX(160);
+        inPlay.setMaxWidth(140);
+        inPlay.setTranslateX(150);
         inPlay.setTranslateY(-155);
         inPlay.getChildren().add(0,new CardViewEssai(new ICard(new Colt()), OurPlayerArea.this));
 
