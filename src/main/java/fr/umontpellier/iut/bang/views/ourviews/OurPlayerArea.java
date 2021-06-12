@@ -9,6 +9,7 @@ import fr.umontpellier.iut.bang.logic.cards.WeaponCard;
 import fr.umontpellier.iut.bang.views.CardView;
 import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.PlayerArea;
+import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
@@ -21,6 +22,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
+
+import java.util.Locale;
 
 
 public class OurPlayerArea extends PlayerArea {
@@ -30,9 +34,7 @@ public class OurPlayerArea extends PlayerArea {
     private HBox handView;
     private HBox inPlay; //Stocke les cartes inPlay
     private VBox hp;
-
-
-
+    private Label role;
 
     public OurPlayerArea(IPlayer player, GameView gameView) {
         super(player, gameView);
@@ -48,6 +50,9 @@ public class OurPlayerArea extends PlayerArea {
         img.setFitHeight(200);
         img.setFitWidth(150);
 
+        role = new Label(super.getIPlayer().getRole().name());
+        role.setStyle("-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
+
         hp = new VBox();
         for(int i =0; i < super.getIPlayer().getHealthPoints();i++){
             ImageView hpFull = new ImageView("images/bullet.png");
@@ -57,11 +62,10 @@ public class OurPlayerArea extends PlayerArea {
         }
         hp.setTranslateY(-350);
 
+        role.setTranslateY(150);
+        role.setTranslateX(50);
 
         handView = new HBox();
-
-
-
 
         inPlay = new HBox();
         inPlay.setMaxWidth(140);
@@ -78,10 +82,19 @@ public class OurPlayerArea extends PlayerArea {
         rootPlayer.getChildren().add(inPlay);
         rootPlayer.getChildren().add(hp);
         getChildren().add(rootPlayer);
+        getChildren().add(role);
 
 
 
+    }
 
+    public void deplacementCoordRelative(Node vBox, int x, int y){
+        TranslateTransition transition;
+        Duration duration = Duration.millis(500);
+        transition = new TranslateTransition(duration, vBox);
+        transition.setByX(x-vBox.getTranslateX());
+        transition.setByY(y-vBox.getTranslateY());
+        transition.play();
     }
 
     private String getImageName(){
@@ -90,6 +103,7 @@ public class OurPlayerArea extends PlayerArea {
         else
             return("images/deadCharacters/" + super.getIPlayer().getBangCharacter().getName().toLowerCase().replaceAll("\\s+","")+".png" );
     }
+
 
     public void updateImg(){
         if(getPlayer().isDead())
@@ -119,8 +133,6 @@ public class OurPlayerArea extends PlayerArea {
     @Override
     public void highlightCurrentArea() {
         name.setStyle("-fx-border-color: red;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
-
-
     }
 
     @Override

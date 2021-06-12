@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -33,6 +34,7 @@ public class InGameView extends GameView {
     private ArrayList<HandView> playersHands;
 
     private ArrayList<VBox> playersBtn;
+
 
     /**
      * Listeners
