@@ -27,6 +27,8 @@ public class OurResultsView extends GameView {
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
+        gagnants = new VBox();
+
         for (Player p : game.winnersProperty()) {
             winners = new Label(p.getName());
             gagnants.getChildren().add(winners);
