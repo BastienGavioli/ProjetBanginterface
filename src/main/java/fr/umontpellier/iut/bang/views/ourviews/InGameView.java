@@ -114,7 +114,7 @@ public class InGameView extends GameView {
             //Sert à mettre les joueurs au bon endroit à 4 joueurs
             int[] conv = {0, 2, 3, 1};
             deplacementVersCoord(yourPlayerArea, ((conv[i]/2)+1)*200-((1-conv[i]/2)*150),
-                    ((conv[i])%2+1)*200-((1-(conv[i])%2)*80));
+                    ((conv[i])%2+1)*225-((1-(conv[i])%2)*105));
 
             areasPlayers.add(yourPlayerArea);
             playersHands.add(new HandView(yourPlayerArea));
@@ -186,7 +186,7 @@ public class InGameView extends GameView {
                     }
                 }
             }
-            deplacementVersCoord(contain, 300, 300);
+            deplacementVersCoord(contain, 150, 325);
             getChildren().add(contain);
         }
     };
