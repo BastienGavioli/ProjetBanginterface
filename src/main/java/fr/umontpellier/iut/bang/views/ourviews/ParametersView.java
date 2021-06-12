@@ -4,6 +4,7 @@ import fr.umontpellier.iut.bang.BangIHM;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -11,18 +12,21 @@ import javafx.scene.media.MediaPlayer;
 import java.io.IOException;
 import java.net.URL;
 
-public class ReadRulesView extends Pane {
+public class ParametersView extends Pane {
     private BangIHM main;
 
     @FXML
     private Button retourAccueil;
 
+    @FXML
+    private Slider volumeSlider;
 
-    public ReadRulesView(BangIHM main) {
+    public ParametersView(BangIHM main) {
         this.main = main;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/readRules.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Parameters.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
+
 
         try {
             fxmlLoader.load();
@@ -40,5 +44,4 @@ public class ReadRulesView extends Pane {
 
         mediaPlayer.play();
     }
-
 }

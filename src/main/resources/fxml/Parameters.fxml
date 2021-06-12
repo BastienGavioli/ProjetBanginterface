@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<fx:root id="root" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Label alignment="CENTER" contentDisplay="CENTER" layoutX="450.0" layoutY="23.0" text="Paramètres" textAlignment="CENTER">
+        <font>
+            <Font size="60.0" />
+        </font>
+    </Label>
+
+    <Button id="retourAccueil" layoutX="875.0" layoutY="40.0" mnemonicParsing="false" onAction="#retourMenu" text="Retour Accueil" textAlignment="CENTER">
+        <font>
+            <Font size="20.0" />
+        </font></Button>
+   <HBox layoutX="22.0" layoutY="176.0" prefHeight="129.0" prefWidth="1066.0">
+      <children>
+      
+          <Label alignment="CENTER" contentDisplay="CENTER" text="Volume" textAlignment="CENTER">
+              <font>
+                  <Font size="26.0" />
+              </font>
+          </Label>
+         <Slider id="volumeSlider" prefHeight="110.0" prefWidth="224.0" />
+      </children>
+   </HBox>
+</fx:root>

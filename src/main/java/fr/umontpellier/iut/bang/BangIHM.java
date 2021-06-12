@@ -28,6 +28,7 @@ public class BangIHM extends Application {
     private InGameView inGame; //Vue utilisée pendant le jeu
     private StartView startView;
     private ReadRulesView readRulesView;
+    private ParametersView parametersView;
     private ResultsView resultsView;
 
     /**
@@ -36,6 +37,7 @@ public class BangIHM extends Application {
     private Scene scene;
     private Scene scene2;
     private Scene sceneRules;
+    private Scene parameters;
 
 
 
@@ -63,11 +65,13 @@ public class BangIHM extends Application {
         initInGameView();
         initResultView();
         initRulesView();
+        initParametersView();
 
         //Creation des scenes
         scene = new Scene(firstView);
         scene2 = new Scene(inGame);
         sceneRules = new Scene(readRulesView);
+        parameters = new Scene(parametersView);
 
         //Caracteristiques générales de la fenetre
         primaryStage.setHeight(700);
@@ -99,6 +103,10 @@ public class BangIHM extends Application {
     public void changeScenereadRulesView(){
         primaryStage.setScene(sceneRules);
     }
+//passer a la scene parameters
+    public void changeSceneParametersView(){
+        primaryStage.setScene(parameters);
+    }
 
     /**
      * Permet de passer à la scene inGame
@@ -122,6 +130,11 @@ public class BangIHM extends Application {
      */
     private void initRulesView() {
         readRulesView = new ReadRulesView(this);
+    }
+
+ // pour instancier la vue parametres
+    private void initParametersView() {
+        parametersView = new ParametersView(this);
     }
 
     /**
