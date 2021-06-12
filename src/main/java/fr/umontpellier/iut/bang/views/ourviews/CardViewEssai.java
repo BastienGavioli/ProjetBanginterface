@@ -97,6 +97,7 @@ public class CardViewEssai extends CardView {
             if(url!=null) {
                 Media media = new Media(url.toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.setVolume(getPlayerArea().getGameView().getIGame().getVolume());
                 mediaPlayer.play();
             }
             else{

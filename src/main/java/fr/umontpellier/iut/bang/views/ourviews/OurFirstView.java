@@ -70,10 +70,5 @@ public class OurFirstView extends GameView {
     @FXML
     public void parametres() {
         main.changeSceneParametersView();
-        URL url = getClass().getClassLoader().getResource("sounds/Paper.mp3");
-        Media media = new Media(url.toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(media);
-
-        mediaPlayer.play();
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -15,15 +16,41 @@
         <font>
             <Font size="20.0" />
         </font></Button>
-   <HBox layoutX="22.0" layoutY="176.0" prefHeight="129.0" prefWidth="1066.0">
+   <GridPane layoutX="50.0" layoutY="200.0" prefHeight="337.0" prefWidth="1000.0" style="-fx-background-color: white;">
+     <columnConstraints>
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+     </columnConstraints>
+     <rowConstraints>
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+     </rowConstraints>
       <children>
-      
-          <Label alignment="CENTER" contentDisplay="CENTER" text="Volume" textAlignment="CENTER">
-              <font>
-                  <Font size="26.0" />
-              </font>
-          </Label>
-         <Slider id="volumeSlider" prefHeight="110.0" prefWidth="224.0" />
+         <Label alignment="CENTER" contentDisplay="CENTER" text="Volume" textAlignment="CENTER" GridPane.halignment="CENTER">
+            <font>
+               <Font size="25.0" />
+            </font>
+         </Label>
+         <Slider fx:id="volumeSlider" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#ajusterVolume" onDragDone="#ajusterVolume" onDragDropped="#ajusterVolume" onDragEntered="#ajusterVolume" onDragExited="#ajusterVolume" onDragOver="#ajusterVolume" onMouseDragEntered="#ajusterVolume" onMouseDragExited="#ajusterVolume" onMouseDragOver="#ajusterVolume" onMouseDragReleased="#ajusterVolume" prefHeight="100.0" prefWidth="100.0" scaleX="2.0" scaleY="2.0" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="196.0" layoutY="44.0" text="Luminosité" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <font>
+               <Font size="25.0" />
+            </font>
+         </Label>
+         <Slider layoutX="647.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" scaleX="2.0" scaleY="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+         <CheckBox fx:id="volume" alignment="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Couper le son" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <font>
+               <Font size="25.0" />
+            </font></CheckBox>
+         <CheckBox fx:id="cursor" alignment="CENTER" layoutX="140.0" layoutY="251.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#change" text="Avoir un curseur stylé" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+            <font>
+               <Font size="25.0" />
+            </font>
+         </CheckBox>
       </children>
-   </HBox>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+   </GridPane>
 </fx:root>

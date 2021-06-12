@@ -20,6 +20,16 @@ public class IGame {
         this.game = game;
     }
 
+    private double volume = 1;
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+
     /**
      * Joueur dont c'est le tour
      */
