@@ -2,6 +2,7 @@ package fr.umontpellier.iut.bang.views.ourviews;
 
 import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IPlayer;
+import fr.umontpellier.iut.bang.logic.Role;
 import fr.umontpellier.iut.bang.logic.cards.BlueCard;
 import fr.umontpellier.iut.bang.logic.cards.Card;
 import fr.umontpellier.iut.bang.logic.cards.Colt;
@@ -82,20 +83,22 @@ public class OurPlayerArea extends PlayerArea {
         rootPlayer.getChildren().add(inPlay);
         rootPlayer.getChildren().add(hp);
         getChildren().add(rootPlayer);
-        getChildren().add(role);
-
-
+        if(getPlayer().getRole().equals(Role.SHERIFF))
+            getChildren().add(role);
 
     }
 
-    public void deplacementCoordRelative(Node vBox, int x, int y){
-        TranslateTransition transition;
-        Duration duration = Duration.millis(500);
-        transition = new TranslateTransition(duration, vBox);
-        transition.setByX(x-vBox.getTranslateX());
-        transition.setByY(y-vBox.getTranslateY());
-        transition.play();
+
+    public void setRoleVisible(){
+        if(!getPlayer().getRole().equals(Role.SHERIFF))
+            getChildren().add(role);
     }
+
+    public void setRoleInvisible(){
+        if(!getPlayer().getRole().equals(Role.SHERIFF))
+            getChildren().remove(role);
+    }
+
 
     private String getImageName(){
         if(!getPlayer().isDead())
@@ -133,11 +136,13 @@ public class OurPlayerArea extends PlayerArea {
     @Override
     public void highlightCurrentArea() {
         name.setStyle("-fx-border-color: red;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
+        setRoleVisible();
     }
 
     @Override
     public void deHightlightCurrentArea() {
         name.setStyle("-fx-border: none;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
+        setRoleInvisible();
     }
 
     private ListChangeListener<BlueCard> whenInPlayIsUpdated = new ListChangeListener<BlueCard>() {
