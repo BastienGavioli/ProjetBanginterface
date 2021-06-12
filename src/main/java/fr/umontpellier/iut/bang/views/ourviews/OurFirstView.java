@@ -69,6 +69,6 @@ public class OurFirstView extends GameView {
 
     @FXML
     public void parametres() {
-        main.changeSceneParametersView();
+        main.changeSceneParametersView("OurFirstView");
     }
 }

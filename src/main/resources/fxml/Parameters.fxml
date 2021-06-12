@@ -12,7 +12,7 @@
         </font>
     </Label>
 
-    <Button id="retourAccueil" layoutX="875.0" layoutY="40.0" mnemonicParsing="false" onAction="#retourMenu" text="Retour Accueil" textAlignment="CENTER">
+    <Button id="retourAccueil" layoutX="875.0" layoutY="40.0" mnemonicParsing="false" onAction="#retourMenu" text="Retour" textAlignment="CENTER">
         <font>
             <Font size="20.0" />
         </font></Button>
@@ -32,14 +32,14 @@
                <Font size="25.0" />
             </font>
          </Label>
-         <Slider fx:id="volumeSlider" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#ajusterVolume" onDragDone="#ajusterVolume" onDragDropped="#ajusterVolume" onDragEntered="#ajusterVolume" onDragExited="#ajusterVolume" onDragOver="#ajusterVolume" onMouseDragEntered="#ajusterVolume" onMouseDragExited="#ajusterVolume" onMouseDragOver="#ajusterVolume" onMouseDragReleased="#ajusterVolume" prefHeight="100.0" prefWidth="100.0" scaleX="2.0" scaleY="2.0" showTickMarks="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
+         <Slider fx:id="volumeSlider" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onDragDetected="#ajusterVolume" onDragDone="#ajusterVolume" onDragDropped="#ajusterVolume" onDragEntered="#ajusterVolume" onDragExited="#ajusterVolume" onDragOver="#ajusterVolume" onMouseDragEntered="#ajusterVolume" onMouseDragExited="#ajusterVolume" onMouseDragOver="#ajusterVolume" onMouseDragReleased="#ajusterVolume" prefHeight="100.0" prefWidth="100.0" scaleX="2.0" scaleY="2.0" showTickMarks="true" value="100.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER" GridPane.vgrow="NEVER" />
          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="196.0" layoutY="44.0" text="Luminosité" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1">
             <font>
                <Font size="25.0" />
             </font>
          </Label>
          <Slider layoutX="647.0" layoutY="12.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" scaleX="2.0" scaleY="2.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-         <CheckBox fx:id="volume" onMouseClicked="#muteVolume" alignment="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="Couper le son" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+         <CheckBox fx:id="volume" alignment="CENTER" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#muteVolume" text="Couper le son" GridPane.halignment="CENTER" GridPane.rowIndex="2">
             <font>
                <Font size="25.0" />
             </font></CheckBox>

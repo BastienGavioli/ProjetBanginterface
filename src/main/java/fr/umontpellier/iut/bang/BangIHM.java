@@ -39,7 +39,7 @@ public class BangIHM extends Application {
     private Scene parameters;
     private Scene resultsScene;
 
-
+    private String provenance;
 
     public static void main(String[] args) {
         launch(args);
@@ -108,7 +108,8 @@ public class BangIHM extends Application {
     /**
      * Permet de passer à la scene parameters
      */
-    public void changeSceneParametersView(){
+    public void changeSceneParametersView(String provenance){
+        this.provenance = provenance;
         primaryStage.setScene(parameters);
     }
 
@@ -117,14 +118,13 @@ public class BangIHM extends Application {
      */
     public void changeSceneToResultView(){
         primaryStage.setScene(resultsScene);
-        System.out.println("Lé ganjan son la!");
+        System.out.println("Les gagnants sont là!");
     }
 
     /**
      * Permet de passer à la scene inGame
      */
     public void changeSceneToStartView(){
-
         primaryStage.setScene(scene);
     }
 
@@ -182,6 +182,10 @@ public class BangIHM extends Application {
 
     public Stage getPrimaryStage() {
         return primaryStage;
+    }
+
+    public String getProvenance() {
+        return provenance;
     }
 
     public void initPlayersNames() {

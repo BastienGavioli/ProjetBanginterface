@@ -45,7 +45,10 @@ public class ParametersView extends Pane {
 
     @FXML
     public void retourMenu(){
-        main.changeSceneToStartView();
+        if(main.getProvenance()=="InGameView")
+            main.changeSceneToInGame();
+        else
+            main.changeSceneToStartView();
     }
 
     @FXML

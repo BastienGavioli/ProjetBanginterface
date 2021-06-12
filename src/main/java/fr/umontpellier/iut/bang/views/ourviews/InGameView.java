@@ -159,7 +159,7 @@ public class InGameView extends GameView {
 
     @FXML
     public void goToTheParameters(){
-        main.changeSceneParametersView();
+        main.changeSceneParametersView("InGameView");
     }
 
     public void setCurrentPlayerChangesListener(ChangeListener<? super Player> whenCurrentPlayerChanges) {
