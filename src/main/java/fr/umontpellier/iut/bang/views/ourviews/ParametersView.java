@@ -49,7 +49,7 @@ public class ParametersView extends Pane {
     }
 
     @FXML
-    public void change(){
+    public void changeCursor(){
         if(cursor.isSelected()){
             Image image = new Image("images/bullet.png");
             getScene().setCursor(new ImageCursor(image));
@@ -65,8 +65,12 @@ public class ParametersView extends Pane {
         }
         else{
             main.getIGame().setVolume(volumeSlider.getValue()/100);
-            System.out.println(volumeSlider.getValue());
         }
+    }
+
+    @FXML
+    public void muteVolume(){
+        main.getIGame().setVolume(0);
     }
 
 }
