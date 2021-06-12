@@ -3,6 +3,7 @@ package fr.umontpellier.iut.bang.views.ourviews;
 import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IGame;
 import fr.umontpellier.iut.bang.IPlayer;
+import fr.umontpellier.iut.bang.logic.cards.WeaponCard;
 import fr.umontpellier.iut.bang.views.CardView;
 import fr.umontpellier.iut.bang.views.PlayerArea;
 import javafx.animation.TranslateTransition;
@@ -87,8 +88,12 @@ public class CardViewEssai extends CardView {
             IGame currentGame = selectedCardView.getPlayerArea().getGameView().getIGame();
 
             //Action !
+            URL url;
             currentGame.onCardSelection(selectedICard,owner);
-            URL url = getClass().getClassLoader().getResource("sounds/"+selectedICard.getName()+".mp3");
+            if(selectedICard.getCard() instanceof WeaponCard)
+                url = getClass().getClassLoader().getResource("sounds/Arme.mp3");
+            else
+                url = getClass().getClassLoader().getResource("sounds/"+selectedICard.getName()+".mp3");
             if(url!=null) {
                 Media media = new Media(url.toString());
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
