@@ -58,8 +58,8 @@ public abstract class PlayerArea extends Pane {
     /**
      * Pour définir l'action quand les points de vie du joueur en jeu changent
      */
-    protected void setHealthPointsListener(ChangeListener<? super Number> whenInPlayIsUpdated) {
-        player.healthPointsProperty().addListener(whenInPlayIsUpdated);
+    protected void setHealthPointsListener(ChangeListener<? super Number> whenHealthPointsIsUpdated) {
+        player.healthPointsProperty().addListener(whenHealthPointsIsUpdated);
     }
 
     /**

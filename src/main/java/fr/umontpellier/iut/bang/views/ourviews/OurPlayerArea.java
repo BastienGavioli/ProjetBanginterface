@@ -28,6 +28,9 @@ public class OurPlayerArea extends PlayerArea {
     private ImageView img;
     private HBox handView;
     private HBox inPlay; //Stocke les cartes inPlay
+    private VBox hp;
+
+
 
 
     public OurPlayerArea(IPlayer player, GameView gameView) {
@@ -44,7 +47,19 @@ public class OurPlayerArea extends PlayerArea {
         img.setFitHeight(200);
         img.setFitWidth(150);
 
+        hp = new VBox();
+        for(int i =0; i < super.getIPlayer().getHealthPoints();i++){
+            ImageView hpFull = new ImageView("images/bullet.png");
+            hpFull.setFitWidth(30);
+            hpFull.setFitHeight(12);
+            hp.getChildren().add(i, hpFull);
+        }
+        hp.setTranslateY(-350);
+
+
         handView = new HBox();
+
+
 
 
         inPlay = new HBox();
@@ -55,10 +70,12 @@ public class OurPlayerArea extends PlayerArea {
 
         setInPlayListener(whenInPlayIsUpdated);
         setWeaponListener(whenWeaponChanges);
+        setHealthPointsListener(whenHealthPointsIsUpdated);
 
         rootPlayer.getChildren().add(img);
         rootPlayer.getChildren().add(name);
         rootPlayer.getChildren().add(inPlay);
+        rootPlayer.getChildren().add(hp);
         getChildren().add(rootPlayer);
 
 
@@ -157,5 +174,44 @@ public class OurPlayerArea extends PlayerArea {
         }
         return -1;
     }
+
+
+    ChangeListener<? super Number> whenHealthPointsIsUpdated = new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observableValue, Number formerHp, Number newHp) {
+            int fhp = (int) formerHp;
+            int nhp = (int) newHp;
+            fhp--;
+            nhp--;
+            int diff = fhp - nhp;
+            if (!(fhp + 1 > OurPlayerArea.super.getIPlayer().getHealthPointsMax()) && !(nhp + 1 > OurPlayerArea.super.getIPlayer().getHealthPointsMax())) {
+                switch (diff) {
+                    case -1:
+                        ImageView hpFull = new ImageView("images/bullet.png");
+                        hpFull.setFitWidth(30);
+                        hpFull.setFitHeight(12);
+                        hp.getChildren().remove(nhp);
+                        hp.getChildren().add(nhp, hpFull);
+                        break;
+                    case 1:
+                        ImageView hpEmpty1 = new ImageView("images/bullet_grey.png");
+                        hpEmpty1.setFitWidth(30);
+                        hpEmpty1.setFitHeight(12);
+                        hp.getChildren().remove(fhp);
+                        hp.getChildren().add(fhp, hpEmpty1);
+                        break;
+                    case 3:
+                        for (int i = 0; i < 3; i++) {
+                            ImageView hpEmpty2 = new ImageView("images/bullet_grey.png");
+                            hpEmpty2.setFitWidth(30);
+                            hpEmpty2.setFitHeight(12);
+                            hp.getChildren().remove(nhp + 1 + i);
+                            hp.getChildren().add(nhp + 1 + i, hpEmpty2);
+                        }
+                        break;
+                }
+            }
+        }
+    };
 
 }
