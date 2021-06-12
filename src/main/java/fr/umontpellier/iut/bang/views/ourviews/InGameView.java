@@ -152,6 +152,12 @@ public class InGameView extends GameView {
         getIGame().onPass();
     }
 
+    @FXML
+    public void retourMenu(){
+        main.changeSceneToStartView();
+    }
+
+    @FXML
     public void goToTheParameters(){
         main.changeSceneParametersView();
     }
@@ -193,6 +199,7 @@ public class InGameView extends GameView {
             getChildren().add(contain);
         }
     };
+
     private ChangeListener<? super Player> whenTargetChange = new ChangeListener<Player>() {
         @Override
         public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
@@ -217,7 +224,6 @@ public class InGameView extends GameView {
         }
     };
 
-
     private ListChangeListener<Player> whenWinnersChange = new ListChangeListener<>() {
         @Override
         public void onChanged(Change<? extends Player> change) {
@@ -225,12 +231,6 @@ public class InGameView extends GameView {
             System.out.println("Les gagnants sont là");
         }
     };
-
-    @FXML
-    public void retourMenu(){
-        main.changeSceneToStartView();
-    }
-
 
     private OurPlayerArea findPlayerArea(Player player){
         for (OurPlayerArea pa : areasPlayers){
