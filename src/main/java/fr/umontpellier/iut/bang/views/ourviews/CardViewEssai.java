@@ -24,21 +24,29 @@ import javafx.util.Duration;
 import java.net.URL;
 
 public class CardViewEssai extends CardView {
-    private Boolean isVisible = true;
-    private ImageView frontImage;
+    private Boolean isVisible;
+    private ImageView frontImage, backImage, displayImage;
+
     private IPlayer player;
     private Label cardName;
     private VBox affichage;
-    private static ImageView backImage = new ImageView(getBack());
+
 
     public CardViewEssai(ICard card, PlayerArea playerArea){
         super(card, playerArea);
         setCardSelectionListener();
+        isVisible=true;
 
 
         frontImage = new ImageView(new Image(card.getImageName()));
         frontImage.setFitHeight(120);
         frontImage.setFitWidth(85);
+
+        backImage = new ImageView(getBack());
+        backImage.setFitHeight(120);
+        backImage.setFitWidth(85);
+
+        displayImage = frontImage;
 
         player = playerArea.getIPlayer();
         cardName = new Label(getICard().getName());
@@ -46,7 +54,7 @@ public class CardViewEssai extends CardView {
 
         affichage = new VBox();
         affichage.setAlignment(Pos.CENTER);
-        affichage.getChildren().add(frontImage);
+        affichage.getChildren().add(displayImage);
         affichage.getChildren().add(cardName);
 
         getChildren().add(affichage);
@@ -56,21 +64,22 @@ public class CardViewEssai extends CardView {
 
     @Override
     public void setVisible() {
-        if(!isVisible){
-            isVisible = true;
-            affichage.getChildren().remove(backImage);
-            affichage.getChildren().add(frontImage);
-        }
+        affichage.getChildren().remove(displayImage);
+        affichage.getChildren().remove(cardName);
+        isVisible = !isVisible;
+        displayImage = frontImage;
+        affichage.getChildren().add(displayImage);
+        affichage.getChildren().add(cardName);
     }
 
     @Override
     public void setUnVisible() {
-        if(isVisible){
-            isVisible = false;
-            affichage.getChildren().remove(frontImage);
-            affichage.getChildren().add(backImage);
-            }
-        }
+        affichage.getChildren().remove(displayImage);
+        affichage.getChildren().remove(cardName);
+        isVisible = !isVisible;
+        displayImage = backImage;
+        affichage.getChildren().add(displayImage);
+    }
 
 
      @Override
@@ -88,20 +97,23 @@ public class CardViewEssai extends CardView {
             IGame currentGame = selectedCardView.getPlayerArea().getGameView().getIGame();
 
             //Action !
-            URL url;
             currentGame.onCardSelection(selectedICard,owner);
-            if(selectedICard.getCard() instanceof WeaponCard)
-                url = getClass().getClassLoader().getResource("sounds/Arme.mp3");
-            else
-                url = getClass().getClassLoader().getResource("sounds/"+selectedICard.getName()+".mp3");
-            if(url!=null) {
-                Media media = new Media(url.toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                mediaPlayer.setVolume(getPlayerArea().getGameView().getIGame().getVolume());
-                mediaPlayer.play();
-            }
-            else{
-                System.out.println("sounds/"+selectedICard.getName()+".mp3");
+
+            //Les sons
+            if(isVisible) {
+                URL url;
+
+                if (selectedICard.getCard() instanceof WeaponCard)
+                    url = getClass().getClassLoader().getResource("sounds/Arme.mp3");
+                else
+                    url = getClass().getClassLoader().getResource("sounds/" + selectedICard.getName() + ".mp3");
+                if (url != null) {
+                    Media media = new Media(url.toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(media);
+                    mediaPlayer.play();
+                } else {
+                    System.out.println("sounds/" + selectedICard.getName() + ".mp3");
+                }
             }
         }
     };
