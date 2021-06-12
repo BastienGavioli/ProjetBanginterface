@@ -87,6 +87,7 @@ public class InGameView extends GameView {
         this.main = main;
         setDrawnCardListener();
         setTargetListener();
+        setWinnerListener();
 
         areasPlayers = new ArrayList<>();
         playersHands = new ArrayList<>();
@@ -134,10 +135,6 @@ public class InGameView extends GameView {
 
     }
 
-    public void passOnClic(){
-        getIGame().onPass();
-    }
-
     public void deplacementVersCoord(Node vBox, int x, int y){
         TranslateTransition transition;
         Duration duration = Duration.millis(500);
@@ -151,13 +148,19 @@ public class InGameView extends GameView {
         return areasPlayers.get(i);
     }
 
-    @Override
-    protected void bindNextActionMessage() {}
-
-    public void hightlightPlayer(Player p){
-        System.out.println("Joueur attaqué mis en valeur");
+    public void passOnClic(){
+        getIGame().onPass();
     }
 
+    @FXML
+    public void retourMenu(){
+        main.changeSceneToStartView();
+    }
+
+    @FXML
+    public void goToTheParameters(){
+        main.changeSceneParametersView();
+    }
 
     public void setCurrentPlayerChangesListener(ChangeListener<? super Player> whenCurrentPlayerChanges) {
         super.setCurrentPlayerChangesListener(whenCurrentPlayerChanges);
@@ -169,6 +172,10 @@ public class InGameView extends GameView {
 
     public void setTargetListener(){
         getIGame().getTargetPlayerProperty().addListener(whenTargetChange);
+    }
+
+    public void setWinnerListener(){
+        getIGame().winnersProperty().addListener(whenWinnersChange);
     }
 
     //C'est ici que l'on gere l'affichage des cartes piochés pour les magasins
@@ -192,6 +199,7 @@ public class InGameView extends GameView {
             getChildren().add(contain);
         }
     };
+
     private ChangeListener<? super Player> whenTargetChange = new ChangeListener<Player>() {
         @Override
         public void changed(ObservableValue<? extends Player> observableValue, Player player, Player t1) {
@@ -216,15 +224,13 @@ public class InGameView extends GameView {
         }
     };
 
-    @Override
-    protected void setPassSelectedListener() {
-    }
-
-    @FXML
-    public void retourMenu(){
-        main.changeSceneToStartView();
-    }
-
+    private ListChangeListener<Player> whenWinnersChange = new ListChangeListener<>() {
+        @Override
+        public void onChanged(Change<? extends Player> change) {
+            main.changeSceneToResultView();
+            System.out.println("Les gagnants sont là");
+        }
+    };
 
     private OurPlayerArea findPlayerArea(Player player){
         for (OurPlayerArea pa : areasPlayers){
@@ -255,9 +261,10 @@ public class InGameView extends GameView {
         return null;
     }
 
-    @FXML
-    public void parametres() {
-        main.changeSceneParametersView();
-    }
+    @Override
+    protected void bindNextActionMessage() {}
 
+    @Override
+    protected void setPassSelectedListener() {
+    }
 }

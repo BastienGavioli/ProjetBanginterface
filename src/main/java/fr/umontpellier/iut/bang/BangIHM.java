@@ -2,7 +2,6 @@ package fr.umontpellier.iut.bang;
 
 import fr.umontpellier.iut.bang.logic.Game;
 import fr.umontpellier.iut.bang.views.GameView;
-import fr.umontpellier.iut.bang.views.ResultsView;
 import fr.umontpellier.iut.bang.views.StartView;
 import fr.umontpellier.iut.bang.views.ourviews.*;
 import javafx.application.Application;
@@ -29,7 +28,7 @@ public class BangIHM extends Application {
     private StartView startView;
     private ReadRulesView readRulesView;
     private ParametersView parametersView;
-    private ResultsView resultsView;
+    private OurResultsView resultsView;
 
     /**
      * Attributs Scene
@@ -38,6 +37,7 @@ public class BangIHM extends Application {
     private Scene scene2;
     private Scene sceneRules;
     private Scene parameters;
+    private Scene resultsScene;
 
 
 
@@ -67,13 +67,14 @@ public class BangIHM extends Application {
         initRulesView();
         initParametersView();
 
-        //Creation des scenes
+        //Création des scenes
         scene = new Scene(firstView);
         scene2 = new Scene(inGame);
         sceneRules = new Scene(readRulesView);
         parameters = new Scene(parametersView);
+        resultsScene = new Scene(resultsView);
 
-        //Caracteristiques générales de la fenetre
+        //Caractéristiques générales de la fenêtre
         primaryStage.setHeight(700);
         primaryStage.setWidth(1100);
         primaryStage.setScene(scene);
@@ -103,9 +104,20 @@ public class BangIHM extends Application {
     public void changeScenereadRulesView(){
         primaryStage.setScene(sceneRules);
     }
-//passer a la scene parameters
+
+    /**
+     * Permet de passer à la scene parameters
+     */
     public void changeSceneParametersView(){
         primaryStage.setScene(parameters);
+    }
+
+    /**
+     * Permet de passer à la scene resultsScene
+     */
+    public void changeSceneToResultView(){
+        primaryStage.setScene(resultsScene);
+        System.out.println("Lé ganjan son la!");
     }
 
     /**
@@ -161,7 +173,7 @@ public class BangIHM extends Application {
      * Pour instancier la vue de fin de partie
      */
     private void initResultView() {
-        resultsView = new EndGameView(this, game);
+        resultsView = new OurResultsView(game, this);
     }
 
     public IGame getIGame() {
