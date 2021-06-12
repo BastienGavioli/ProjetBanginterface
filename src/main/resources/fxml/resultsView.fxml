@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="root" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/StartView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="javafx.scene.layout.Pane" id="root" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/StartView.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" >
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="21.0" text="Fin de partie !" textAlignment="CENTER">
         <font>
             <Font size="60.0" />
@@ -29,4 +29,4 @@
         <font>
             <Font size="25.0" />
         </font></Button>
-</AnchorPane>
+</fx:root>
