@@ -98,21 +98,21 @@ public class CardViewEssai extends CardView {
 
             //Action !
             currentGame.onCardSelection(selectedICard,owner);
-
-            //Les sons
-            if(isVisible) {
+            //sons
+            if(isVisible){
                 URL url;
-
-                if (selectedICard.getCard() instanceof WeaponCard)
+                if(selectedICard.getCard() instanceof WeaponCard)
                     url = getClass().getClassLoader().getResource("sounds/Arme.mp3");
                 else
-                    url = getClass().getClassLoader().getResource("sounds/" + selectedICard.getName() + ".mp3");
-                if (url != null) {
+                    url = getClass().getClassLoader().getResource("sounds/"+selectedICard.getName()+".mp3");
+                if(url!=null) {
                     Media media = new Media(url.toString());
                     MediaPlayer mediaPlayer = new MediaPlayer(media);
+                    mediaPlayer.setVolume(getPlayerArea().getGameView().getIGame().getVolume());
                     mediaPlayer.play();
-                } else {
-                    System.out.println("sounds/" + selectedICard.getName() + ".mp3");
+                }
+                else{
+                    System.out.println("sounds/"+selectedICard.getName()+".mp3");
                 }
             }
         }
