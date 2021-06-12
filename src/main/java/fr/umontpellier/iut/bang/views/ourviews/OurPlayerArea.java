@@ -16,6 +16,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -84,7 +85,15 @@ public class OurPlayerArea extends PlayerArea {
     }
 
     private String getImageName(){
-        return("images/characters/" + super.getIPlayer().getBangCharacter().getName().toLowerCase().replaceAll("\\s+","")+".png" );
+        if(!getPlayer().isDead())
+            return("images/characters/" + super.getIPlayer().getBangCharacter().getName().toLowerCase().replaceAll("\\s+","")+".png" );
+        else
+            return("images/deadCharacters/" + super.getIPlayer().getBangCharacter().getName().toLowerCase().replaceAll("\\s+","")+".png" );
+    }
+
+    public void updateImg(){
+        if(getPlayer().isDead())
+            img.setImage(new Image(getImageName()));
     }
 
     @Override
@@ -211,6 +220,7 @@ public class OurPlayerArea extends PlayerArea {
                         break;
                 }
             }
+            updateImg();
         }
     };
 
