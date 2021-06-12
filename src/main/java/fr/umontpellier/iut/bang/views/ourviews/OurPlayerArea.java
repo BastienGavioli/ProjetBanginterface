@@ -127,7 +127,8 @@ public class OurPlayerArea extends PlayerArea {
                 else if(change.wasRemoved()){
                     for(Card c: change.getRemoved()) {
                         if(!(c instanceof WeaponCard)){
-                            inPlay.getChildren().remove(findCardView(handView, c));
+                            //inPlay.getChildren().remove(findCardView(handView, c));
+                            inPlay.getChildren().remove(findInPlayIndex(c));
                         }
                     }
                 }
@@ -157,5 +158,15 @@ public class OurPlayerArea extends PlayerArea {
             currentGame.getIGame().onTargetSelection(target);
         }
     };
+
+    private int findInPlayIndex(Card card){
+        for (int i =0; i < inPlay.getChildren().size(); i++){
+            CardViewEssai cv = (CardViewEssai) inPlay.getChildren().get(i);
+            if(cv.getCard().equals(card)){
+                return i;
+            }
+        }
+        return -1;
+    }
 
 }
