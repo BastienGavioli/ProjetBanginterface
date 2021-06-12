@@ -197,10 +197,18 @@ public class InGameView extends GameView {
             if(player!=null && player!=getIGame().getCurrentPlayer()){
                 opa = findPlayerHand(player);
                 opa.setVisible(false);
+                for(Node c : opa.getChildren()){
+                    CardViewEssai cae = (CardViewEssai) c;
+                    cae.setVisible();
+                }
             }
             if(t1!=null  && t1!=getIGame().getCurrentPlayer()) {
                 opa = findPlayerHand(t1);
                 opa.setVisible(true);
+                for(Node c : opa.getChildren()){
+                    CardViewEssai cae = (CardViewEssai) c;
+                    cae.setUnVisible();
+                }
                 deplacementVersCoord(opa, 700, 125);
             }
         }
