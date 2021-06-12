@@ -27,10 +27,6 @@ public class ICard {
         return card.getImageName();
     }
 
-    /*public String getSound(){
-        return card.getSound();
-    }*/
-
     public Card getCard() {
         return card;
     }

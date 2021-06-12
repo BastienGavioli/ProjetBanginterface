@@ -117,7 +117,6 @@ public class OurPlayerArea extends PlayerArea {
                         if(!(c instanceof WeaponCard)){
                             inPlay.getChildren().add(new CardViewEssai
                                     (new ICard(c), OurPlayerArea.this));
-                            //c.getSound();
                         }
                     }
                 }
