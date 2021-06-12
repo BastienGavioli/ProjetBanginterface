@@ -1,12 +1,17 @@
 package fr.umontpellier.iut.bang.views.ourviews;
 
 import fr.umontpellier.iut.bang.BangIHM;
+import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IGame;
+import fr.umontpellier.iut.bang.logic.Game;
 import fr.umontpellier.iut.bang.logic.Player;
+import fr.umontpellier.iut.bang.logic.cards.Card;
 import fr.umontpellier.iut.bang.views.GameView;
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -15,6 +20,8 @@ public class OurResultsView extends GameView {
 
     private BangIHM main;
 
+    IGame game;
+
     @FXML
     private Label winners;
 
@@ -22,6 +29,7 @@ public class OurResultsView extends GameView {
 
     public OurResultsView(IGame game, BangIHM main) {
         super(game);
+        this.game=game;
         this.main = main;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/resultsView.fxml"));
         fxmlLoader.setRoot(this);
@@ -29,10 +37,7 @@ public class OurResultsView extends GameView {
 
         gagnants = new VBox();
 
-        for (Player p : game.winnersProperty()) {
-            winners = new Label(p.getName());
-            gagnants.getChildren().add(winners);
-        }
+        setNames();
 
         getChildren().add(gagnants);
 
@@ -40,6 +45,14 @@ public class OurResultsView extends GameView {
             fxmlLoader.load();
         } catch (IOException exception) {
             throw new RuntimeException(exception);
+        }
+    }
+
+    public void setNames(){
+        for (Player p : game.winnersProperty()) {
+            winners = new Label(p.getName());
+            winners.setStyle("-fx-font-size: 20");
+            gagnants.getChildren().add(winners);
         }
     }
 

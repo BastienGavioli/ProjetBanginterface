@@ -63,7 +63,6 @@ public class BangIHM extends Application {
         game = new IGame(new Game(Game.makePlayers(playerNames.toArray(new String[playerNames.size()]))));
         initGameView();
         initInGameView();
-        initResultView();
         initRulesView();
         initParametersView();
 
@@ -72,7 +71,6 @@ public class BangIHM extends Application {
         scene2 = new Scene(inGame);
         sceneRules = new Scene(readRulesView);
         parameters = new Scene(parametersView);
-        resultsScene = new Scene(resultsView);
 
         //Caractéristiques générales de la fenêtre
         primaryStage.setHeight(700);
@@ -117,6 +115,8 @@ public class BangIHM extends Application {
      * Permet de passer à la scene resultsScene
      */
     public void changeSceneToResultView(){
+        initResultView();
+        resultsScene = new Scene(resultsView);
         primaryStage.setScene(resultsScene);
         System.out.println("Les gagnants sont là!");
     }
