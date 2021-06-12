@@ -102,16 +102,6 @@ public class OurPlayerArea extends PlayerArea {
         name.setStyle("-fx-border: none;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
     }
 
-    private CardView findCardView(HBox container, Card card) {
-        for (Node n : container.getChildren()) {
-            CardView nodeCardView = (CardView) n;
-            Card nodeCard = nodeCardView.getCard();
-            if (nodeCard.equals(card))
-                return nodeCardView;
-        }
-        return null;
-    }
-
     private ListChangeListener<BlueCard> whenInPlayIsUpdated = new ListChangeListener<BlueCard>() {
         @Override
         public void onChanged(Change<? extends BlueCard> change) {
@@ -127,7 +117,6 @@ public class OurPlayerArea extends PlayerArea {
                 else if(change.wasRemoved()){
                     for(Card c: change.getRemoved()) {
                         if(!(c instanceof WeaponCard)){
-                            //inPlay.getChildren().remove(findCardView(handView, c));
                             inPlay.getChildren().remove(findInPlayIndex(c));
                         }
                     }
