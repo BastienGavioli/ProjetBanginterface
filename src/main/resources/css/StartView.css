@@ -4,12 +4,12 @@
     -fx-background-size: cover;
 }
 
-#testCard{
+#testCard {
     -fx-min-height: 300px;
     -fx-min-width: 200px;
 }
 
-#parametre{
+#parametre {
     -fx-min-width: 50px;
     -fx-min-height: 50px;
     -fx-max-width: 50px;
@@ -19,11 +19,11 @@
     -fx-background-size: 100%;
 }
 
-#cache{
+#cache {
     -fx-border-color: red;
     -fx-content-display: none;
 }
 
-#rootPlayer Label{
+#rootPlayer Label {
     -fx-translate-y: -186px;
 }

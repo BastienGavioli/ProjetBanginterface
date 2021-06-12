@@ -34,7 +34,6 @@ public class OurPlayerArea extends PlayerArea {
 
         setOnMouseClicked(whenPlayerSelected);
 
-
         rootPlayer = new VBox();
         rootPlayer.setId("rootPlayer");
         name = new Label(player.getName());
@@ -42,8 +41,8 @@ public class OurPlayerArea extends PlayerArea {
         img = new ImageView(getImageName());
         img.setFitHeight(200);
         img.setFitWidth(150);
-        handView = new HBox();
 
+        handView = new HBox();
 
         inPlay = new HBox();
         inPlay.setMaxWidth(300);
