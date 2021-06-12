@@ -28,7 +28,7 @@ public class BangIHM extends Application {
     private InGameView inGame; //Vue utilisée pendant le jeu
     private StartView startView;
     private ReadRulesView readRulesView;
-    private ResultsView resultsView;
+    private GameView resultsView;
 
     /**
      * Attributs Scene
@@ -148,7 +148,7 @@ public class BangIHM extends Application {
      * Pour instancier la vue de fin de partie
      */
     private void initResultView() {
-        resultsView = new EndGameView(this);
+        resultsView = new EndGameView(game, this);
     }
 
     public IGame getIGame() {

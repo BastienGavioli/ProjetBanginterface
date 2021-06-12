@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="657.0" prefWidth="1085.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root id="root" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <Label alignment="CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="21.0" text="Fin de partie !" textAlignment="CENTER">
         <font>
             <Font size="60.0" />
@@ -15,4 +15,18 @@
             <Font size="24.0" />
         </font>
     </Label>
+    <Label fx:id="winners" alignment="CENTER" contentDisplay="CENTER" layoutX="269.0" layoutY="155.0" textAlignment="CENTER">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </Label>
+    <Button id="playAgain" layoutX="210.0" layoutY="480.0" mnemonicParsing="false" text="Rejouer">
+        <font>
+            <Font size="25.0" />
+        </font>
+    </Button>
+    <Button id="quit" layoutX="730.0" layoutY="480.0" mnemonicParsing="false" onAction="#stop" text="Quitter et fermer la fenêtre">
+        <font>
+            <Font size="25.0" />
+        </font></Button>
 </fx:root>
