@@ -3,6 +3,7 @@ package fr.umontpellier.iut.bang.views.ourviews;
 import fr.umontpellier.iut.bang.ICard;
 import fr.umontpellier.iut.bang.IGame;
 import fr.umontpellier.iut.bang.IPlayer;
+import fr.umontpellier.iut.bang.logic.cards.BlueCard;
 import fr.umontpellier.iut.bang.logic.cards.WeaponCard;
 import fr.umontpellier.iut.bang.views.CardView;
 import fr.umontpellier.iut.bang.views.PlayerArea;
@@ -50,7 +51,13 @@ public class CardViewEssai extends CardView {
 
         player = playerArea.getIPlayer();
         cardName = new Label(getICard().getName());
-        cardName.setStyle("-fx-translate-y: -110px");
+
+        if(card.getCard() instanceof BlueCard){
+            cardName.setStyle("-fx-translate-y: -110px;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #4169E1");
+        }
+        else{
+            cardName.setStyle("-fx-translate-y: -110px;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #CD853F");
+        }
 
         affichage = new VBox();
         affichage.setAlignment(Pos.CENTER);
