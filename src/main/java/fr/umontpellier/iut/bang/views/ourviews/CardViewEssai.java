@@ -41,12 +41,12 @@ public class CardViewEssai extends CardView {
 
         player = playerArea.getIPlayer();
         cardName = new Label(getICard().getName());
+        cardName.setStyle("-fx-translate-y: -110px");
+
         affichage = new VBox();
-
-
-        affichage.getChildren().add(cardName);
+        affichage.setAlignment(Pos.CENTER);
         affichage.getChildren().add(frontImage);
-
+        affichage.getChildren().add(cardName);
 
         getChildren().add(affichage);
 
