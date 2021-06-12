@@ -48,7 +48,7 @@ public class InGameView extends GameView {
             if (newPlayer != null) {
                 findPlayerArea(newPlayer).highlightCurrentArea();
                 findPlayerHand(newPlayer).setVisible(true);
-
+                deplacementVersCoord(findPlayerHand(newPlayer), 700, 325);
             }
         }
     };
@@ -119,7 +119,7 @@ public class InGameView extends GameView {
             areasPlayers.add(yourPlayerArea);
             playersHands.add(new HandView(yourPlayerArea));
             getChildren().add(playersHands.get(i));
-            deplacementVersCoord(playersHands.get(i), 700, 400);
+            deplacementVersCoord(playersHands.get(i), 700, 325);
             playersHands.get(i).setVisible(false);
         }
 
@@ -138,13 +138,11 @@ public class InGameView extends GameView {
 
     public void deplacementVersCoord(Node vBox, int x, int y){
         TranslateTransition transition;
-
         Duration duration = Duration.millis(500);
         transition = new TranslateTransition(duration, vBox);
-        transition.setByX(x);
-        transition.setByY(y);
+        transition.setByX(x-vBox.getTranslateX());
+        transition.setByY(y-vBox.getTranslateY());
         transition.play();
-
     }
 
     public OurPlayerArea getPlayerArea(int i) {
@@ -188,6 +186,7 @@ public class InGameView extends GameView {
                     }
                 }
             }
+            deplacementVersCoord(contain, 300, 300);
             getChildren().add(contain);
         }
     };
@@ -198,12 +197,11 @@ public class InGameView extends GameView {
             if(player!=null && player!=getIGame().getCurrentPlayer()){
                 opa = findPlayerHand(player);
                 opa.setVisible(false);
-                deplacementVersCoord(opa, 0, 200);
             }
             if(t1!=null  && t1!=getIGame().getCurrentPlayer()) {
                 opa = findPlayerHand(t1);
                 opa.setVisible(true);
-                deplacementVersCoord(opa, 0, -200);
+                deplacementVersCoord(opa, 700, 125);
             }
         }
     };
