@@ -161,7 +161,7 @@ public class BangIHM extends Application {
      * Pour instancier la vue de fin de partie
      */
     private void initResultView() {
-        resultsView = new EndGameView(this);
+        resultsView = new EndGameView(this, game);
     }
 
     public IGame getIGame() {
