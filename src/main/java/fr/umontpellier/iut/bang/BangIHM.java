@@ -4,10 +4,7 @@ import fr.umontpellier.iut.bang.logic.Game;
 import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.ResultsView;
 import fr.umontpellier.iut.bang.views.StartView;
-import fr.umontpellier.iut.bang.views.ourviews.OurFirstView;
-import fr.umontpellier.iut.bang.views.ourviews.InGameView;
-import fr.umontpellier.iut.bang.views.ourviews.ReadRulesView;
-import fr.umontpellier.iut.bang.views.ourviews.OurStartView;
+import fr.umontpellier.iut.bang.views.ourviews.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -151,7 +148,7 @@ public class BangIHM extends Application {
      * Pour instancier la vue de fin de partie
      */
     private void initResultView() {
-        resultsView = null;
+        resultsView = new EndGameView(this);
     }
 
     public IGame getIGame() {
