@@ -7,6 +7,7 @@ import fr.umontpellier.iut.bang.views.GameView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -17,6 +18,8 @@ public class OurResultsView extends GameView {
     @FXML
     private Label winners;
 
+    private VBox gagnants;
+
     public OurResultsView(IGame game, BangIHM main) {
         super(game);
         this.main = main;
@@ -24,8 +27,12 @@ public class OurResultsView extends GameView {
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
-        for (Player p : game.winnersProperty())
+        for (Player p : game.winnersProperty()) {
             winners = new Label(p.getName());
+            gagnants.getChildren().add(winners);
+        }
+
+        getChildren().add(gagnants);
 
         try {
             fxmlLoader.load();
