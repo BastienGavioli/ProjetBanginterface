@@ -89,7 +89,7 @@ public class CardViewEssai extends CardView {
             //Action !
             currentGame.onCardSelection(selectedICard,owner);
             URL url;
-            if(selectedICard.getCard() instanceof WeaponCard || selectedICard.getName().equals("Scope")){
+            if(selectedICard.getCard() instanceof WeaponCard){
                 url = getClass().getClassLoader().getResource("sounds/Arme.mp3");
             }
             else{
