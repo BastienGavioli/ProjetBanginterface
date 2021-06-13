@@ -55,6 +55,7 @@ public class OurFirstView extends GameView {
     @FXML
     public void startNewGame(){
         main.startFirstView();
+        main.changeSceneToInGame();
     }
 
     @FXML
