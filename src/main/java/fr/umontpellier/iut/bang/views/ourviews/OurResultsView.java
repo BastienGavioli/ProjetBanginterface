@@ -58,7 +58,8 @@ public class OurResultsView extends GameView {
 
     @FXML
     protected void playAgain() {
-
+        main.startFirstView();
+        main.changeSceneToInGame();
     }
 
     @FXML
