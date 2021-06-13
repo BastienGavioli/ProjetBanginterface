@@ -4,20 +4,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root id="root" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <Button id="lancerUnePartie" fx:id="btnLancer" layoutX="200.0" layoutY="180.0" mnemonicParsing="false" onAction="#lancerPartie" styleClass="bouton" text="Lancer une partie">
+<fx:root id="root" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1100.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Button id="lancerUnePartie" fx:id="btnLancer" layoutX="200.0" layoutY="180.0" mnemonicParsing="false" onAction="#lancerPartie" styleClass="bouton" text="Reprendre la partie">
         <font>
             <Font size="25.0" />
         </font></Button>
-    <Button id="lancerSauvegarde" layoutX="700.0" layoutY="180.0" mnemonicParsing="false" text="Lancer depuis &#10;une sauvegarde" textAlignment="CENTER">
+    <Button id="lancerSauvegarde" layoutX="700.0" layoutY="180.0" mnemonicParsing="false" onAction="#startNewGame" text="Lancer une nouvelle partie" textAlignment="CENTER">
         <font>
             <Font size="25.0" />
         </font></Button>
-    <Button id="lireRegles" onAction="#lireRegles" layoutX="210.0" layoutY="480.0" mnemonicParsing="false" text="Lire les règles">
+    <Button id="lireRegles" layoutX="210.0" layoutY="480.0" mnemonicParsing="false" onAction="#lireRegles" text="Lire les règles">
         <font>
             <Font size="25.0" />
         </font></Button>
-    <Button id="parametres" onAction="#parametres" layoutX="730.0" layoutY="480.0" mnemonicParsing="false" text="Paramètres">
+    <Button id="parametres" layoutX="730.0" layoutY="480.0" mnemonicParsing="false" onAction="#parametres" text="Paramètres">
         <font>
             <Font size="25.0" />
         </font></Button>
