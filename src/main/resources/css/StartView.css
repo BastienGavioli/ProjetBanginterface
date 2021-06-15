@@ -19,11 +19,16 @@
     -fx-background-size: 100%;
 }
 
-#cache {
-    -fx-border-color: red;
-    -fx-content-display: none;
-}
 
 #rootPlayer Label {
     -fx-translate-y: -186px;
+}
+
+Button{
+    -fx-background-color: rgba(230, 230, 230, 0.8);
+    -fx-border-color: black;
+}
+
+#parametre{
+    -fx-background-color: rgba(230, 230, 230, 0);
 }

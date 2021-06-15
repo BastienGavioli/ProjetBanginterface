@@ -93,6 +93,7 @@ public class InGameView extends GameView {
         playersHands = new ArrayList<>();
         instruction = new Label("");
 
+
         getIGame().currentStateProperty().addListener(whenStateChanges);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/src/main/resources/fxml/inGameView.fxml"));

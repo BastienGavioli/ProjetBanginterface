@@ -5,7 +5,7 @@
 <?import javafx.scene.text.*?>
 
 <fx:root id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="657.0" prefWidth="1085.0" styleClass="root" stylesheets="@../css/StartView.css" type="javafx.scene.layout.Pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <Button id="retourAccueil" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#retourMenu" style="-fx-background-color: transparent; -fx-border-color: black;" text="Retour Accueil" textAlignment="CENTER">
+    <Button id="retourAccueil" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#retourMenu" text="Retour Accueil" textAlignment="CENTER">
         <font>
             <Font size="15.0" />
         </font></Button>

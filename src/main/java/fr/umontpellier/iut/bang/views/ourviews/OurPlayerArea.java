@@ -7,35 +7,29 @@ import fr.umontpellier.iut.bang.logic.cards.BlueCard;
 import fr.umontpellier.iut.bang.logic.cards.Card;
 import fr.umontpellier.iut.bang.logic.cards.Colt;
 import fr.umontpellier.iut.bang.logic.cards.WeaponCard;
-import fr.umontpellier.iut.bang.views.CardView;
 import fr.umontpellier.iut.bang.views.GameView;
 import fr.umontpellier.iut.bang.views.PlayerArea;
-import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.util.Duration;
-
-import java.util.Locale;
 
 
 public class OurPlayerArea extends PlayerArea {
     private VBox rootPlayer;
-    private Label name;
+    private Label playerName;
     private ImageView img;
     private HBox handView;
     private HBox inPlay; //Stocke les cartes inPlay
     private VBox hp;
     private Label role;
+    private Label charactereName;
 
     public OurPlayerArea(IPlayer player, GameView gameView) {
         super(player, gameView);
@@ -44,8 +38,15 @@ public class OurPlayerArea extends PlayerArea {
 
         rootPlayer = new VBox();
         rootPlayer.setId("rootPlayer");
-        name = new Label(player.getName());
-        name.setStyle("-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
+        playerName = new Label(player.getName());
+        playerName.setStyle("-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
+
+        charactereName = new Label(player.getBangCharacter().getName());
+        charactereName.setStyle("-fx-font-family: Algerian;"+
+                "-fx-text-fill: #808000;"+
+                "-fx-translate-y: -85px;");
+
+
         rootPlayer.setAlignment(Pos.CENTER);
         img = new ImageView(getImageName());
         img.setFitHeight(200);
@@ -79,7 +80,8 @@ public class OurPlayerArea extends PlayerArea {
         setHealthPointsListener(whenHealthPointsIsUpdated);
 
         rootPlayer.getChildren().add(img);
-        rootPlayer.getChildren().add(name);
+        rootPlayer.getChildren().add(playerName);
+        rootPlayer.getChildren().add(charactereName);
         rootPlayer.getChildren().add(inPlay);
         rootPlayer.getChildren().add(hp);
         getChildren().add(rootPlayer);
@@ -135,13 +137,13 @@ public class OurPlayerArea extends PlayerArea {
 
     @Override
     public void highlightCurrentArea() {
-        name.setStyle("-fx-border-color: red;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
+        playerName.setStyle("-fx-border-color: red;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
         setRoleVisible();
     }
 
     @Override
     public void deHightlightCurrentArea() {
-        name.setStyle("-fx-border: none;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
+        playerName.setStyle("-fx-border: none;" + "-fx-font-family: Algerian;" + "-fx-text-fill: #808000");
         setRoleInvisible();
     }
 

@@ -36,6 +36,8 @@ public class OurResultsView extends GameView {
         fxmlLoader.setController(this);
 
         gagnants = new VBox();
+        gagnants.setTranslateX(300);
+        gagnants.setTranslateY(300);
 
         setNames();
 
@@ -58,8 +60,7 @@ public class OurResultsView extends GameView {
 
     @FXML
     protected void playAgain() {
-        main.startFirstView();
-        main.changeSceneToInGame();
+        main.changeSceneToStartView();
     }
 
     @FXML

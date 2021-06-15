@@ -24,12 +24,30 @@ import javafx.util.Duration;
 
 import java.net.URL;
 
+/**
+ * Cette classe sert à afficher les cartes, qu'elles soient dans la main, face caché ou partout sur l'écran
+ */
+
 public class CardViewEssai extends CardView {
     private Boolean isVisible;
+    /**
+     * frontImage contient la face visible de la carte
+     * backImage contient le dos de la carte
+     * displayImage contient l'imageView à afficher parmit les deux choix au dessus
+     */
     private ImageView frontImage, backImage, displayImage;
 
+    /**
+     * Le possesseur de la carte
+     */
     private IPlayer player;
+    /**
+     * Le nom de la carte à afficher
+     */
     private Label cardName;
+    /**
+     * Le bloc contenant tout les elements de la carte pour les afficher
+     */
     private VBox affichage;
 
 
@@ -103,9 +121,9 @@ public class CardViewEssai extends CardView {
             IPlayer owner = selectedCardView.getPlayerArea().getIPlayer();
             IGame currentGame = selectedCardView.getPlayerArea().getGameView().getIGame();
 
-            //Action !
+            //Action de la carte
             currentGame.onCardSelection(selectedICard,owner);
-            //sons
+            //son de la carte
             if(isVisible){
                 URL url;
                 if(selectedICard.getCard() instanceof WeaponCard)
